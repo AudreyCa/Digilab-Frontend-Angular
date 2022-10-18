@@ -24,6 +24,8 @@ import { DirectoryComponent } from './components/directory/directory.component';
 import { TchatComponent } from './components/tchat/tchat.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { DirectoryModalComponent } from './modals/directory-modal/directory-modal.component';
+import { WeatherModalComponent } from './modals/weather-modal/weather-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { DirectoryModalComponent } from './modals/directory-modal/directory-moda
     DirectoryComponent,
     TchatComponent,
     WeatherComponent,
-    DirectoryModalComponent
+    DirectoryModalComponent,
+    WeatherModalComponent
   ],
   imports: [
     BrowserModule,

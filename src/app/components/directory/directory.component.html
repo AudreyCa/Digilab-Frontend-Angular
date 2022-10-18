@@ -9,10 +9,16 @@
         </button>
     </div>
 
-    <div *ngFor="let dir of directories">
-        <span>Nom :{{dir.data.name}}</span>
-        <span>Chemin{{dir.data.path}}</span>
-        <span>descirption{{dir.data.description}}</span>
+    <div class="dossiers" *ngFor="let dir of directories">
+        <mat-form-field appearance="fill" class="dossier">
+            <mat-dialog-content>Nom : {{dir.data.name}}</mat-dialog-content>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="dossier">
+            <mat-dialog-content>Chemin : {{dir.data.path}}</mat-dialog-content>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="dossier">
+            <mat-dialog-content>Description : {{dir.data.description}}</mat-dialog-content>
+        </mat-form-field>
     </div>
 
 </section>
