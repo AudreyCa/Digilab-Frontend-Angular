@@ -1,0 +1,13 @@
+section {
+    display: flex;
+    flex-direction: column;
+    border: solid 2px rgb(168, 137, 198);
+    padding: 10px;
+}
+
+.active {
+    background-color: rgb(172, 172, 208);
+    color: white;
+    width: auto;
+    height: 20px;
+}

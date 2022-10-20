@@ -1,0 +1,13 @@
+section {
+    display: flex;
+    .list, .room {
+        padding: 10px;
+        border: solid 2px pink;
+    }
+    .list {
+        width: 20%;
+    }
+    .room {
+        width: 80%;
+    }
+}

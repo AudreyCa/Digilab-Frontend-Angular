@@ -20,13 +20,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgModule } from '@angular/core';
-import { OverwiewComponent } from './components/overwiew/overwiew.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TchatComponent } from './components/tchat/tchat.component';
 import { UserComponent } from './components/user/user.component';
 import { UserModalComponent } from './modals/user-modal/user-modal.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { WeatherModalComponent } from './modals/weather-modal/weather-modal.component';
+import { OverviewComponent } from './components/overview/overview.component';
+import { SideBarLeftComponent } from './components/side-bar-left/side-bar-left.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { SideBarRightComponent } from './components/side-bar-right/side-bar-right.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { TchatRoomComponent } from './components/tchat-room/tchat-room.component';
+import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +42,18 @@ import { WeatherModalComponent } from './modals/weather-modal/weather-modal.comp
     RegisterComponent,
     AgePipe,
     UserModalComponent,
-    OverwiewComponent,
     DirectoryComponent,
     TchatComponent,
     WeatherComponent,
     DirectoryModalComponent,
-    WeatherModalComponent
+    WeatherModalComponent,
+    OverviewComponent,
+    SideBarLeftComponent,
+    NavBarComponent,
+    SideBarRightComponent,
+    UserListComponent,
+    TchatRoomComponent,
+    TchatTopBarComponent
   ],
   imports: [
     BrowserModule,
