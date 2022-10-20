@@ -1,31 +1,32 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { UserComponent } from './components/user/user.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { AgePipe } from './pipes/age.pipe';
-import { MatListModule } from '@angular/material/list';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { UserModalComponent } from './modals/user-modal/user-modal.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { OverwiewComponent } from './components/overwiew/overwiew.component';
-import { DirectoryComponent } from './components/directory/directory.component';
-import { TchatComponent } from './components/tchat/tchat.component';
-import { WeatherComponent } from './components/weather/weather.component';
-import { DirectoryModalComponent } from './modals/directory-modal/directory-modal.component';
-import { WeatherModalComponent } from './modals/weather-modal/weather-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AgePipe } from './pipes/age.pipe';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { DirectoryComponent } from './components/directory/directory.component';
+import { DirectoryModalComponent } from './modals/directory-modal/directory-modal.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgModule } from '@angular/core';
+import { OverwiewComponent } from './components/overwiew/overwiew.component';
+import { RegisterComponent } from './components/register/register.component';
+import { TchatComponent } from './components/tchat/tchat.component';
+import { UserComponent } from './components/user/user.component';
+import { UserModalComponent } from './modals/user-modal/user-modal.component';
+import { WeatherComponent } from './components/weather/weather.component';
+import { WeatherModalComponent } from './modals/weather-modal/weather-modal.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { WeatherModalComponent } from './modals/weather-modal/weather-modal.comp
     MatFormFieldModule,
     FormsModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
