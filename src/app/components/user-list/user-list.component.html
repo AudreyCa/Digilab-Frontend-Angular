@@ -1,3 +1,11 @@
 <section>
-    <p>User-list</p>
+
+    <div *ngFor="let user of userId">
+        <mat-card class="card-contact" (click)="onOpenModal(user)">
+            <img mat-card-avatar [src]="user.avatar">
+            <span>{{user.first_name}}</span>
+            <span>{{user.last_name}}</span>
+        </mat-card>
+    </div>
+
 </section>

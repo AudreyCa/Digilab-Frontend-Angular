@@ -10,10 +10,10 @@ export class UserComponent implements OnInit {
  
  userInfo!:any[];
 
-  constructor(private userService: UserService) { }
+  constructor(private _userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((value:any)=> this.userInfo = value.data)
+    this._userService.getUsers().subscribe((value:any)=> this.userInfo = value.data)
   }
 
 }

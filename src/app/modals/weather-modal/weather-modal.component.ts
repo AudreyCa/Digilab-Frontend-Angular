@@ -1,9 +1,7 @@
-import { throwDialogContentAlreadyAttachedError } from '@angular/cdk/dialog';
-import { TmplAstBoundAttribute } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { delay, fromEvent, of, switchMap, take } from 'rxjs';
+import { delay, switchMap } from 'rxjs';
 import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({

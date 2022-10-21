@@ -1,0 +1,21 @@
+<section>
+
+
+
+    <mat-card class="identity">
+        <img mat-card-avatar [src]="dataUser.avatar">
+        <mat-card-content class="name"> {{ dataUser.first_name }} </mat-card-content>
+        <mat-card-content> {{ dataUser.last_name }} </mat-card-content>
+    </mat-card>
+
+    <div class="question">
+        <p>Etes-vous sûr(e) de vouloir discuter avec cette personne?</p>
+    </div>
+
+    <div class="buttons">
+        <button mat-raised-button color="primary" (click)="onValidate()">Valider</button>
+        <button mat-raised-button color="warn" (click)="onCancel()">Annuler</button>
+    </div>
+
+
+</section>

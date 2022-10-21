@@ -33,6 +33,7 @@ import { SideBarRightComponent } from './components/side-bar-right/side-bar-righ
 import { UserListComponent } from './components/user-list/user-list.component';
 import { TchatRoomComponent } from './components/tchat-room/tchat-room.component';
 import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.component';
+import { UserListModalComponent } from './modals/user-list-modal/user-list-modal.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.c
     SideBarRightComponent,
     UserListComponent,
     TchatRoomComponent,
-    TchatTopBarComponent
+    TchatTopBarComponent,
+    UserListModalComponent
   ],
   imports: [
     BrowserModule,

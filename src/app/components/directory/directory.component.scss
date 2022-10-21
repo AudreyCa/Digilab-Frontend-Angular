@@ -2,12 +2,17 @@ section{
     display: flex;
     flex-direction: column;
     padding: 10px;
+    margin: 0;
+    border: solid 4px rgb(228, 105, 33);
+    height: 100%;
+    width: 100%;
     .entete {
         display: flex;
         align-items: center;
+        justify-content: center;
         height: 50px;
         h2 {
-            font-size: 30px;
+            font-size: 20px;
             padding: 20px 50px 0 10px;
         }
         button {
@@ -16,10 +21,9 @@ section{
     }
     .dossiers {
         display: flex;
-        flex-wrap: wrap;
-        // margin: 20px;
+        width: 100%;
         .dossier {
-            margin-right: 20px;
+            margin-right: 5px;
         }
     } 
 }

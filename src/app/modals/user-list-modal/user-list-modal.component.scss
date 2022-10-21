@@ -1,0 +1,22 @@
+section {
+    display: flex;
+    flex-direction: column;
+    .identity {
+        display: flex;
+        width: 100%;
+        justify-content: start;
+        img {
+            margin-right: 10px;
+        }
+        .name {
+            margin-right: 3px;
+        }
+    }
+    .question {
+        margin: 25px 0 15px;
+    }
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}

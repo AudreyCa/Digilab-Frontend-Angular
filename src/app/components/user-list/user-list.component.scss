@@ -1,0 +1,20 @@
+section {
+    display: flex;
+    flex-direction: column;
+    .card-contact{
+        height: 100%;
+        width: 100%;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        img, span {
+            margin-right: 5px;
+        }
+    }
+}
+
+
+
+
+
