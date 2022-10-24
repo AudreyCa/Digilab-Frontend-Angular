@@ -1,10 +1,10 @@
 <section>
-    <p>Tchat-top-bar</p>
+
     <div *ngIf="data">
         <!-- <span>{{data | json}}</span> -->
-        <img [src]="data.avatar" alt="">
-        <span>{{data.first_name}}</span>
-        <span>{{data.last_name}}</span>
+        <img [src]="data.avatar" alt="photo de profil">
+        <span> {{ data.first_name }} </span>
+        <span> {{ data.last_name }} </span>
     </div>
 
 </section>

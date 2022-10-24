@@ -62,13 +62,6 @@ export class WeatherModalComponent implements OnInit {
         rue : form.rue, 
         codePostal : form.codePostal, 
         ville: form.ville })
-        // alternative de solution mais plus longue :
-        // let today = new Date();
-        // const d = (today.getDate().toString()).padStart(2, '0')
-        // const str = `${today.getFullYear()}-${today.getMonth() + 1 }-${d}T${today.getHours()}:00`;
-        // const index = responseFromWeatherServer.hourly.time.findIndex((elem:string) => elem===str)
-        // console.log(responseFromWeatherServer.hourly.temperature_2m[index]);
-        // console.log(str);
     })
   }
 

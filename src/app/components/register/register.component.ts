@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
 import { UserModalComponent } from 'src/app/modals/user-modal/user-modal.component';
 import { DataService } from 'src/app/services/data.service';
@@ -25,7 +26,8 @@ export class RegisterComponent implements OnInit {
 constructor(private _dataService: DataService, 
   private _userService: UserService, 
   private _fb: FormBuilder, 
-  private _matDialog: MatDialog) { }
+  private _matDialog: MatDialog,
+  private _route: Router) { }
 
   ngOnInit(): void {
     this._dataService.getCountries().subscribe((countries:any) => { 

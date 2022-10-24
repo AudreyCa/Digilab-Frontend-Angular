@@ -1,0 +1,24 @@
+section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.input-chat {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 5px;
+    input {
+        width: 75%;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+    button {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+    }
+}

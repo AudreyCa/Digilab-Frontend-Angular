@@ -3,13 +3,18 @@ section {
     flex-direction: column;
     .identity {
         display: flex;
+        height: 70px;
         width: 100%;
-        justify-content: start;
         img {
             margin-right: 10px;
         }
         .name {
-            margin-right: 3px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            span {
+                margin-right: 3px;
+            }
         }
     }
     .question {

@@ -1,4 +1,10 @@
 <section>
-    <app-tchat-top-bar></app-tchat-top-bar>
-    <p>Tchat-room</p>
+    <div class="tchat-room" (ngSubmit)="onSend()">
+
+        <app-tchat-top-bar></app-tchat-top-bar>
+        <div class="input-chat" *ngIf="data">
+            <input type="text" [formControl]="messageText">
+            <button mat-raised-button color="primary">Envoyer</button>
+        </div>
+    </div>
 </section>

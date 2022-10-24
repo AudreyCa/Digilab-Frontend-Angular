@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,14 +11,22 @@ import { UserService } from 'src/app/services/user.service';
 export class TchatRoomComponent implements OnInit {
 
   data!:any;
+  messageText: FormControl = new FormControl();
 
-  constructor(private _http: HttpClient, private _userService: UserService) { }
+  constructor(private _http: HttpClient,
+    private _userService: UserService,
+    private _fb: FormBuilder) { }
 
   ngOnInit(): void {
     this._userService.getUserCurrent().subscribe((response:any) => {
       console.log(response)
       this.data = response
     })
+  }
+
+  onSend() {
+
+
   }
 
 }

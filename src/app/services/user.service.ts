@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { GlobalHttpService } from './global-http.service';
+import { map } from 'rxjs';
+import { ResponseApiUser } from '../models/response-api-user';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService {
+export class UserService extends GlobalHttpService{
   userApi: string = 'https://reqres.in/api/users?page=2';
   dataUrl = "https://reqres.in/api/users";
   // observable qui permet de souscrire.
   currentUser = new Subject<any>()
-
-  constructor(private httpClient: HttpClient) { }
+  // responses!:any[];
 
   getUsers () : Observable<any> {
-    return this.httpClient.get(this.userApi)
+    return this._http.get(this.userApi)
+    // .pipe(
+    //   map(
+    //     (response: ResponseApiUser) =>
+    //     repsonse.data
+    //       ))
   }
 
   postData (formUser: any) : Observable<any> {
-    return this.httpClient.post(this.dataUrl,{data: formUser})
+    return this._http.post(this.dataUrl,{data: formUser})
   }
 
   // l'utilisateur selectionné. Pour l'afficher dans le tchat-room, top bar

@@ -1,10 +1,18 @@
 <section>
 
-    <div *ngFor="let user of userId">
+    <!-- Notre input avec le formControl -->
+    <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [formControl]="searchBar">
+    </mat-form-field>
+
+    <div  class="card-container" *ngFor="let user of newArray">
         <mat-card class="card-contact" (click)="onOpenModal(user)">
-            <img mat-card-avatar [src]="user.avatar">
-            <span>{{user.first_name}}</span>
-            <span>{{user.last_name}}</span>
+                <img mat-card-avatar [src]="user.avatar">
+                <div class="id">
+                    <mat-card-content>{{ user.first_name }}</mat-card-content>
+                    <mat-card-content>{{ user.last_name }}</mat-card-content>
+                </div>             
         </mat-card>
     </div>
 

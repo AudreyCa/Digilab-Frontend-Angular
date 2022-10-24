@@ -4,8 +4,10 @@
 
     <mat-card class="identity">
         <img mat-card-avatar [src]="dataUser.avatar">
-        <mat-card-content class="name"> {{ dataUser.first_name }} </mat-card-content>
-        <mat-card-content> {{ dataUser.last_name }} </mat-card-content>
+        <div class="name">
+            <span> {{ dataUser.first_name }} </span>
+            <span> {{ dataUser.last_name }} </span>
+        </div>
     </mat-card>
 
     <div class="question">

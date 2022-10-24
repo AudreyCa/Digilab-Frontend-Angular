@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class TchatTopBarComponent implements OnInit {
   constructor(private _userService: UserService) { }
 
   ngOnInit(): void {
-    this._userService.getUserCurrent().subscribe((response:any) =>{
+    this._userService.getUserCurrent().subscribe((response:User) =>{
       console.log(response)
       this.data = response
     })
