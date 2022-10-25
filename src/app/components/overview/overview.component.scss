@@ -1,8 +1,16 @@
-.central {
-    display: flex;
-    flex-direction: column;
-    .tchat {
-        width: 100%;
-        height: 92vh;
-    }
+.container-fluid {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.L1, .R1 {
+    background-color: rgba(128, 128, 128, 0.589);
+    padding: 10px;
+}
+
+.col-central {
+    background-color: antiquewhite;
 }

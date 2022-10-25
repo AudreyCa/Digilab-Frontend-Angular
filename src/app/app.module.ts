@@ -28,12 +28,13 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { WeatherModalComponent } from './modals/weather-modal/weather-modal.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { SideBarLeftComponent } from './components/side-bar-left/side-bar-left.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { SideBarRightComponent } from './components/side-bar-right/side-bar-right.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { TchatRoomComponent } from './components/tchat-room/tchat-room.component';
 import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.component';
 import { UserListModalComponent } from './modals/user-list-modal/user-list-modal.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { UserListModalComponent } from './modals/user-list-modal/user-list-modal
     FormsModule,
     MatButtonModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

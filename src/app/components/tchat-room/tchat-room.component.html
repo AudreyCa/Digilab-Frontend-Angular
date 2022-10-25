@@ -1,10 +1,26 @@
-<section>
-    <div class="tchat-room" (ngSubmit)="onSend()">
-
-        <app-tchat-top-bar></app-tchat-top-bar>
-        <div class="input-chat" *ngIf="data">
-            <input type="text" [formControl]="messageText">
-            <button mat-raised-button color="primary">Envoyer</button>
+<section class="tchat-complet">
+  <div class="tchat-room" *ngIf="data">
+    <app-tchat-top-bar></app-tchat-top-bar>
+  
+    
+      <mat-chip-list class="tchat">
+        <div *ngFor="let item of tabResults ">
+          <div class="left" *ngIf="item.setup">
+            <mat-chip color="accent" matline class="chipR"> {{item.setup}} </mat-chip>
+          </div>
+          <div class="right" *ngIf="item.punchline">
+            <mat-chip color="primary" matLine class="chipL"> {{item.punchline}} </mat-chip>
+          </div>
         </div>
+      </mat-chip-list>
+  
+    <div class="input-chat">
+      <mat-form-field appearance="fill">
+        <textarea matInput (keypress)="onSendMessage($event)" [formControl]="messageText"
+          placeholder="Votre message..."></textarea>
+      </mat-form-field>
+      <mat-icon (click)="onSend()">send</mat-icon>
     </div>
+  
+  </div>
 </section>
