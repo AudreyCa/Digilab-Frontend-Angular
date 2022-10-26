@@ -1,9 +1,10 @@
-section {
+.side-bar-right {
     display: flex;
     flex-direction: column;
-    border: solid 3px rgb(28, 168, 215);
-    padding: 10px;
+    align-items: center;
+    text-align: center;
     margin: 0;
     height: 100vh;
     width: 100%;
+    padding: 15px 30px 15px 15px;
 }

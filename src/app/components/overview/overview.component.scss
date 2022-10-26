@@ -6,11 +6,17 @@
     overflow: hidden;
 }
 
-.L1, .R1 {
-    background-color: rgba(128, 128, 128, 0.589);
-    padding: 10px;
+.row>*{
+    margin: 0;
+    padding: 0;
 }
 
-.col-central {
-    background-color: antiquewhite;
+.L1, .R1 {
+    background-color: rgba(128, 128, 128, 0.589);
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

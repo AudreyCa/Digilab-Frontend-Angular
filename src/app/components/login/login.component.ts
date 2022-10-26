@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, Observable, startWith } from 'rxjs';
-import { UserModalComponent } from 'src/app/modals/user-modal/user-modal.component';
-import { DataService } from 'src/app/services/data.service';
+import { Observable } from 'rxjs';
+
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,28 +16,35 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private _userService: UserService, 
-    private _fb: FormBuilder, 
-    private _matDialog: MatDialog,
+    private _fb: FormBuilder,
     private _route: Router) { }
 
   ngOnInit(): void {
 
     this.userFormConnexion = this._fb.group({
-      mailConnexion:["", Validators.required],
+      email:["", Validators.required],
       passwordConnexion:["", Validators.required]
     })
 
   }
 
-
   onSubmit() {
+    // On récupère les valmeurs du formulaire qu'on log après
     const formConnexion = this.userFormConnexion.value;
     console.log(formConnexion);
+    // pour le routing
     this._route.navigate(['/overview'])
-    // pour afficher les data reçues du serveur dans une modale :
-  //   this._userService.postData(formConnexion).subscribe((response:any) => {
-  //     console.log(response);
-  }
+    // On récupère le mail du formulaire si dessus
+    const mailValue = this.userFormConnexion.value.email
+    // On récupère l'avatar de l'API reqres
+    this._userService.getUsers().subscribe((value:any) => {
+      const avatarUsers = value.data[1].avatar
+      // On met le mail et l'avatr dans un objet
+      const user = {mail: mailValue, avatar: avatarUsers}
+      // On les met dans les crée dans le localStorageé
+      localStorage.setItem('user', JSON.stringify(user))
+    })
+    }
 
   onRegister() {
     this._route.navigate(['/register'])

@@ -15,6 +15,7 @@ export class DirectoryComponent implements OnInit {
   constructor(private _dialog: MatDialog) { }
 
   ngOnInit(): void {
+
   }
 
   addNewDir() : void {

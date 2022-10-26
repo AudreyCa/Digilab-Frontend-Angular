@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tchat-top-bar',
@@ -9,15 +7,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TchatTopBarComponent implements OnInit {
 
-  data!:any;
+@Input() idUserData!:any;
   
-  constructor(private _userService: UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this._userService.getUserCurrent().subscribe((response:User) =>{
-      console.log(response)
-      this.data = response
-    })
   }
 
 }

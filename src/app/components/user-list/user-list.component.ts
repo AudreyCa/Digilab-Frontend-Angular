@@ -17,9 +17,7 @@ export class UserListComponent implements OnInit {
   // Pour l'input de recherche, on instancie un nouveau FormControl
   searchBar: FormControl = new FormControl();
   newArray!: any[];
-  // firstName!: string;
-  // lastName!: string;
-  // avatar!: string;
+  identite!: any;
 
   constructor(private _userService: UserService, 
     private _matDialog: MatDialog, 
@@ -45,6 +43,10 @@ export class UserListComponent implements OnInit {
         user.last_name.toLowerCase().includes(resultSearch.toLowerCase())
       }
       )})
+      this._userService.getProfil().subscribe((retour:any) => {
+        console.log(retour)
+        this.identite = retour
+      })
     }
 
   onOpenModal(user: User): void {

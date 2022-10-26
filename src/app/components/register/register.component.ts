@@ -26,8 +26,7 @@ export class RegisterComponent implements OnInit {
 constructor(private _dataService: DataService, 
   private _userService: UserService, 
   private _fb: FormBuilder, 
-  private _matDialog: MatDialog,
-  private _route: Router) { }
+  private _matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this._dataService.getCountries().subscribe((countries:any) => { 

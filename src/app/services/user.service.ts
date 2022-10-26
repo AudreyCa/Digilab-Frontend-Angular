@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { GlobalHttpService } from './global-http.service';
-import { map } from 'rxjs';
-import { ResponseApiUser } from '../models/response-api-user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +11,10 @@ export class UserService extends GlobalHttpService{
   dataUrl = "https://reqres.in/api/users";
   // observable qui permet de souscrire.
   currentUser = new Subject<any>()
-  // responses!:any[];
+  dataUserSubject = new BehaviorSubject<any>({})
 
   getUsers () : Observable<any> {
     return this._http.get(this.userApi)
-    // .pipe(
-    //   map(
-    //     (response: ResponseApiUser) =>
-    //     repsonse.data
-    //       ))
   }
 
   postData (formUser: any) : Observable<any> {
@@ -38,6 +31,20 @@ export class UserService extends GlobalHttpService{
   
     return this.currentUser.asObservable()
     // cette méthode permet de transformer l'attribut en observable
+  }
+
+  getProfil() {
+    const newData = localStorage.getItem('user')
+    if (newData) {
+      const userObj = JSON.parse(newData)
+      const nom = userObj.mail.split(/[.@]/)[0]
+      const prenom = userObj.mail.split(/[.@]/)[1]
+      const myObject = {nom: nom, prenom: prenom, avatar: userObj.avatar, mail: userObj.mail}
+      this.dataUserSubject.next(myObject)
+      return this.dataUserSubject.asObservable()
+    } else {
+      return of()
+    }
   }
 
 }
