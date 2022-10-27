@@ -1,4 +1,5 @@
-import { User } from "./cours-exemple.model";
+import { User } from "./user.model";
+
 
 
 export class Message {

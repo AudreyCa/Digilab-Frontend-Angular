@@ -13,7 +13,7 @@
 // On 'implémente' l'interface dans cette ligne puis le déclare dans la classe
 // Pour l'héritage, on met 'extends'. Ici : extends Role
 // attention à l'ordre des éléments dans l'export (export class User extends Role implements IUser)
-export class User implements IUser {
+export class CoursExemple implements IUser {
 
     public firstName!: string;
     public lastName!: string;

@@ -2,7 +2,8 @@
 <h1 mat-dialog-title> Réponse du serveur</h1>
 <div mat-dialog-content>
     <div class="list" *ngIf="data.infoData">
-        <p>Nom / prénom : {{data.infoData.name}}</p>
+        <p>Nom : {{data.infoData.nom}}</p>
+        <p>Prénom : {{data.infoData.prenom}}</p>
         <p>Pseudo : {{data.infoData.pseudo}}</p>
         <p>Date de naissance : {{data.infoData.dateNaissance}}</p>
         <p>Adresse : {{data.infoData.adresse}}</p>

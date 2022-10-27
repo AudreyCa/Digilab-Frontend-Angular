@@ -1,0 +1,56 @@
+<section class="finder">
+
+    <mat-icon class="menu">menu</mat-icon>
+   
+    <div class="search-bar">
+        <form>
+            <mat-form-field appearance="fill">
+              <mat-label>Tapez le métier recherché</mat-label>
+              <input type="text" placeholder="ex. consultant" aria-label="Métier recherché" matInput
+                     [formControl]="searchJob" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let metier of metiers | async" [value]="metier">
+                  {{metier | json}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+    </div>
+
+
+     <!-- Ne faire apparaitre qu'au clic sur le métier dans la searchBar -->
+    <!-- <div *ngIf="searchJob.value"> -->
+
+        <div class="cards">
+
+            <mat-card class="card">
+                <mat-card-header>
+                    <mat-card-title>metier</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image [src]="image" alt="Photo metier/professionnel">
+                <mat-card-content>
+                    <p>Nom / Prénom</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)="onOpenModal()">Discuter</button>
+                </mat-card-actions>
+            </mat-card>
+
+            <mat-card class="card">
+                <mat-card-header>
+                    <mat-card-title>Métier</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image [src]="image" alt="Photo metier/professionnel">
+                <mat-card-content>
+                    <p>Nom / Prénom</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)="onOpenModal()">Discuter</button>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+
+    <!-- </div> -->
+
+</section>

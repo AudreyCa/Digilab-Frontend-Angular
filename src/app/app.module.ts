@@ -36,6 +36,8 @@ import { UserListModalComponent } from './modals/user-list-modal/user-list-modal
 import { MatChipsModule } from '@angular/material/chips';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { FinderComponent } from './components/finder/finder.component';
+import { FinderModalComponent } from './modals/finder-modal/finder-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     UserListComponent,
     TchatRoomComponent,
     TchatTopBarComponent,
-    UserListModalComponent
+    UserListModalComponent,
+    FinderComponent,
+    FinderModalComponent
   ],
   imports: [
     BrowserModule,

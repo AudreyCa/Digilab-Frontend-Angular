@@ -10,15 +10,19 @@ import { DirectoryComponent } from './components/directory/directory.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { TchatRoomComponent } from './components/tchat-room/tchat-room.component';
 import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.component';
+import { FinderComponent } from './components/finder/finder.component';
 
 const routes: Routes = [
   // on en fait un vide pour la première page d'attérissage
  {path:'', component: LoginComponent},
  {path:'register', component: RegisterComponent},
  {path:'Login', component: LoginComponent},
+ {path: 'finder', component: FinderComponent},
+ {path: 'tchat-room', component: TchatRoomComponent},
  {path:'overview', component: OverviewComponent, 
     children: 
     [{path: 'directory', component: DirectoryComponent},
+    {path: 'finder', component: FinderComponent},
      {path:'tchat', component: TchatComponent,
         children: 
         [{path:'userList', component: UserListComponent}, 

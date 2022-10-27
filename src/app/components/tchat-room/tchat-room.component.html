@@ -5,13 +5,13 @@
   <div class="tchat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <div *ngFor="let item of tabResults">
 
-      <div class="left" *ngIf="item.setup">
+      <div class="right" *ngIf="item.setup">
         <mat-chip-list>
-          <mat-chip  selected> {{item.setup}} </mat-chip>
+          <mat-chip color="accent" selected> {{item.setup}} </mat-chip>
         </mat-chip-list>
       </div>
 
-      <div class="right" *ngIf="item.punchline">
+      <div class="left" *ngIf="item.punchline">
         <mat-chip-list>
           <mat-chip  selected> {{item.punchline}} </mat-chip>
         </mat-chip-list>

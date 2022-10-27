@@ -8,7 +8,6 @@ export class User {
     lastName!: string;
     avatar!: string;
     readonly _id?: string;
-    password?: string;
     email?: string;
     roomsID?: Room[];
     sentMessagesID?: Message[];
@@ -24,6 +23,9 @@ export class User {
     skills?: string;
     role?: string;
     friendsID?: User[];
+    birthDate?: number;
+    password?: string;
+    confirmPassword?: string;
 
 
     constructor() {}

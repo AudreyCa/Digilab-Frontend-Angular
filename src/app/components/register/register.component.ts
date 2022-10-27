@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, Observable, startWith } from 'rxjs';
 import { UserModalComponent } from 'src/app/modals/user-modal/user-modal.component';
+import { User } from 'src/app/models/user.model';
+import { BackendService } from 'src/app/services/backend.service';
 import { DataService } from 'src/app/services/data.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -21,21 +23,24 @@ export class RegisterComponent implements OnInit {
   options!: string[];
   filteredOptions!: Observable<string[]>;
   userForm!: FormGroup;
-  // passwordError = false;
+  user = new User();
+
 
 
 constructor(private _dataService: DataService, 
   private _userService: UserService, 
   private _fb: FormBuilder, 
   private _matDialog: MatDialog,
-  private _snackBar: MatSnackBar) { }
+  private _snackBar: MatSnackBar,
+  private _backend: BackendService) { }
 
   ngOnInit(): void {
+    // Pour récupérer la liste des pays via l'API dans dataservice
     this._dataService.getCountries().subscribe((countries:any) => { 
       this.countries = countries;
       this.options = this.sortCountries();
       // @ts-ignore
-      this.filteredOptions = this.userForm?.get("pays")?.valueChanges.pipe(
+      this.filteredOptions = this.userForm?.get("country")?.valueChanges.pipe(
         startWith(''),
         map(value => this._filter(value || '')),
       );
@@ -43,20 +48,24 @@ constructor(private _dataService: DataService,
 
     // .groupe pour grouper dans le formulaire. 
     // Les attributs, à l'intérieur, servent à lier au html
+    // on initialise avec le model User
     this.userForm = this._fb.group({
-      name:["", Validators.required],
-      pseudo:["", Validators.required],
-      dateNaissance:["", Validators.required],
-      email:["", [Validators.email, Validators.required]],
-      telephone: [null, Validators.required],
-      adresse:["", Validators.required],
-      ville:["", Validators.required],
-      codePostal: ["", Validators.required],
-      pays:["", Validators.required],
+      lastName:[this.user.lastName, Validators.required],
+      firstName:[this.user.firstName, Validators.required],
+      username:[this.user.username, Validators.required],
+      birthDate:[this.user.birthDate, Validators.required],
+      email:[this.user.email, [Validators.email, Validators.required]],
+      phoneNumber: [this.user.phoneNumber, Validators.required],
+      street:[this.user.street, Validators.required],
+      city:[this.user.city, Validators.required],
+      zipCode: [this.user.zipCode, Validators.required],
+      country:[this.user.country, Validators.required],
       skills: new FormArray([]),
-      password:["", [Validators.required, Validators.minLength(8)]],
-      confirmPassword:["", [Validators.required, Validators.minLength(8)]]
+      password:[this.user.password, [Validators.required, Validators.minLength(8)]],
+      confirmPassword:[this.user.confirmPassword, [Validators.required, Validators.minLength(8)]]
     })
+
+    this.user.avatar = 'https://picsum.photos/seed/picsum/200/300'
   }
 
   private _filter(value: string): string[] {
@@ -76,7 +85,7 @@ constructor(private _dataService: DataService,
     const pass = form.password
     const confirmPass = form.confirmPassword
     if(pass !== confirmPass) {
-      // this.passwordError = true
+  
       this._snackBar.open('votre mot de passe ne correspond pas','ok',{verticalPosition:'top'})
       return;
     }
@@ -88,6 +97,18 @@ constructor(private _dataService: DataService,
       exitAnimationDuration:'800ms', 
       data: {date: response.createdAt, infoData: response.data}}
       )})
+    
+    // pour les skills :
+    this.user.skills = form.skills
+    console.log(form);
+
+    // Pour lier au backend:
+    // Etape 1 : on récupère les données du formulaire
+    this.user = Object.assign(this.user, form)
+    console.warn(this.user)
+    // puis on les envoie au backend
+    this._backend.postBack(form).subscribe((response:any) => {
+      console.log('envoyé au backend: ' + response)})
   }
 
   get skills() {

@@ -1,0 +1,9 @@
+.finder-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .boutons {
+        display: flex;
+        justify-content: space-around;
+    }
+}

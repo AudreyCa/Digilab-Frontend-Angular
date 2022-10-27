@@ -1,6 +1,6 @@
 <section class="side-bar-left">
 
-    <h2>Application</h2>
+    <h2>Menu</h2>
     <div class="nav">
             <a routerLink="tchat" routerLinkActive="active">
                 <mat-icon>message</mat-icon><p>Tchat</p>
@@ -8,6 +8,10 @@
             <a routerLink="directory" routerLinkActive="active">
                 <mat-icon>folder_open</mat-icon><p>Dossiers</p>
             </a>
+            <!-- <a routerLink="finder" routerLinkActive="active">
+                <mat-icon>find_in_page</mat-icon><p>Finder</p>
+            </a> -->
+            <a (click)="onClick()"><mat-icon>find_in_page</mat-icon><p>Finder</p></a>
     </div>
 
 </section>
