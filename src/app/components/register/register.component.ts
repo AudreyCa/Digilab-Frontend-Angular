@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, Observable, startWith } from 'rxjs';
 import { UserModalComponent } from 'src/app/modals/user-modal/user-modal.component';
 import { DataService } from 'src/app/services/data.service';
@@ -21,12 +21,14 @@ export class RegisterComponent implements OnInit {
   options!: string[];
   filteredOptions!: Observable<string[]>;
   userForm!: FormGroup;
+  // passwordError = false;
 
 
 constructor(private _dataService: DataService, 
   private _userService: UserService, 
   private _fb: FormBuilder, 
-  private _matDialog: MatDialog) { }
+  private _matDialog: MatDialog,
+  private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this._dataService.getCountries().subscribe((countries:any) => { 
@@ -70,6 +72,14 @@ constructor(private _dataService: DataService,
   onSubmit() {
     const form = this.userForm.value;
     console.log(form);
+    // Pour le confirm password :
+    const pass = form.password
+    const confirmPass = form.confirmPassword
+    if(pass !== confirmPass) {
+      // this.passwordError = true
+      this._snackBar.open('votre mot de passe ne correspond pas','ok',{verticalPosition:'top'})
+      return;
+    }
     // pour afficher les data reçues du serveur dans une modale :
     this._userService.postData(form).subscribe((response:any) => {
       console.log(response);

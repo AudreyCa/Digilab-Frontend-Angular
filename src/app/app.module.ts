@@ -35,7 +35,7 @@ import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.c
 import { UserListModalComponent } from './modals/user-list-modal/user-list-modal.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +75,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

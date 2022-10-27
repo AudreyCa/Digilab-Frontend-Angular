@@ -52,4 +52,3 @@ interface IUser {
     // Ici, on ne l'implémente pas, on déclare avec le type de retour !
     getProfilUser(): string;
 }
-
