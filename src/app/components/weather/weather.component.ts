@@ -11,9 +11,9 @@ import { WeatherModalComponent } from 'src/app/modals/weather-modal/weather-moda
 export class WeatherComponent implements OnInit {
 
   meteo = {
-    rue: 'Paul Bert',
-    codePostal: 74100,
-    ville: 'Annemasse',
+    street: 'Paul Bert',
+    zipCode: 74100,
+    city: 'Annemasse',
     temperature: 20
   }
 
@@ -34,7 +34,7 @@ export class WeatherComponent implements OnInit {
       enterAnimationDuration:'800ms', 
       exitAnimationDuration:'800ms',
       width: '600px',
-      data: {rue: this.meteo.rue, codePostal: this.meteo.codePostal, ville: this.meteo.ville}
+      data: {rue: this.meteo.street, codePostal: this.meteo.zipCode, ville: this.meteo.city}
     });
     modalWeather.afterClosed().subscribe((resultFromModal: any) => {
       console.log(resultFromModal);

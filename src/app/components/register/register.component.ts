@@ -24,8 +24,7 @@ export class RegisterComponent implements OnInit {
   filteredOptions!: Observable<string[]>;
   userForm!: FormGroup;
   user = new User();
-
-
+  avatarProfil = 'https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM';
 
 constructor(private _dataService: DataService, 
   private _userService: UserService, 
@@ -53,19 +52,19 @@ constructor(private _dataService: DataService,
       lastName:[this.user.lastName, Validators.required],
       firstName:[this.user.firstName, Validators.required],
       username:[this.user.username, Validators.required],
-      birthDate:[this.user.birthDate, Validators.required],
+      birthDate:this.user.birthDate,
       email:[this.user.email, [Validators.email, Validators.required]],
-      phoneNumber: [this.user.phoneNumber, Validators.required],
+      phoneNumber: this.user.phoneNumber,
       street:[this.user.street, Validators.required],
       city:[this.user.city, Validators.required],
       zipCode: [this.user.zipCode, Validators.required],
       country:[this.user.country, Validators.required],
       skills: new FormArray([]),
+      avatar: this.user.avatar,
       password:[this.user.password, [Validators.required, Validators.minLength(8)]],
       confirmPassword:[this.user.confirmPassword, [Validators.required, Validators.minLength(8)]]
     })
 
-    this.user.avatar = 'https://picsum.photos/seed/picsum/200/300'
   }
 
   private _filter(value: string): string[] {
@@ -81,6 +80,7 @@ constructor(private _dataService: DataService,
   onSubmit() {
     const form = this.userForm.value;
     console.log(form);
+
     // Pour le confirm password :
     const pass = form.password
     const confirmPass = form.confirmPassword
@@ -89,6 +89,7 @@ constructor(private _dataService: DataService,
       this._snackBar.open('votre mot de passe ne correspond pas','ok',{verticalPosition:'top'})
       return;
     }
+    
     // pour afficher les data reçues du serveur dans une modale :
     this._userService.postData(form).subscribe((response:any) => {
       console.log(response);
@@ -100,15 +101,18 @@ constructor(private _dataService: DataService,
     
     // pour les skills :
     this.user.skills = form.skills
-    console.log(form);
 
     // Pour lier au backend:
     // Etape 1 : on récupère les données du formulaire
     this.user = Object.assign(this.user, form)
     console.warn(this.user)
     // puis on les envoie au backend
-    this._backend.postBack(form).subscribe((response:any) => {
-      console.log('envoyé au backend: ' + response)})
+    // et on affiche les data reçues du formulaire dans la modale :
+    this._backend.postBack(this.user).subscribe((response:any) => {
+      console.log('envoyé au backend: ' + response)
+      console.log('token ' + response.token)
+      // on récupère le token pour le stocker dans le localStorage avec setItem
+      localStorage.setItem('token', response.token)})
   }
 
   get skills() {

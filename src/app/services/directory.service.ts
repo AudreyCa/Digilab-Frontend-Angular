@@ -14,17 +14,4 @@ export class DirectoryService extends GlobalHttpService {
     return this._http.post(this.dataUrl,{data: directoryForm})
   }
 
-  // const dialogRef = this._dialog.open(
-  //   DirectoryComponent, {
-  //     width: "600px",
-  //     enterAnimationDuration:'800ms', 
-  //     exitAnimationDuration:'800ms', 
-  //   });
-  // dialogRef.afterclose().subscribe(
-  //   responseFromModal => {
-  //     let: {name, path,description} = responseFromModal
-  //     this._directories.push(new DirectoryComponent(name, path, description))
-  //   }
-  // )
-
 }

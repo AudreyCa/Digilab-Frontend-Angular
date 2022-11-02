@@ -2,16 +2,16 @@
 <h1 mat-dialog-title> Réponse du serveur</h1>
 <div mat-dialog-content>
     <div class="list" *ngIf="data.infoData">
-        <p>Nom : {{data.infoData.nom}}</p>
-        <p>Prénom : {{data.infoData.prenom}}</p>
-        <p>Pseudo : {{data.infoData.pseudo}}</p>
-        <p>Date de naissance : {{data.infoData.dateNaissance}}</p>
-        <p>Adresse : {{data.infoData.adresse}}</p>
-        <p>Code postal : {{data.infoData.codePostal}}</p>
-        <p>Ville : {{data.infoData.ville}}</p>
-        <p>Pays : {{data.infoData.pays}}</p>
+        <p>Nom : {{data.infoData.lastName}}</p>
+        <p>Prénom : {{data.infoData.firstName}}</p>
+        <p>Pseudo : {{data.infoData.username}}</p>
+        <p>Date de naissance : {{data.infoData.birthdate}}</p>
+        <p>Adresse : {{data.infoData.street}}</p>
+        <p>Code postal : {{data.infoData.zipCode}}</p>
+        <p>Ville : {{data.infoData.city}}</p>
+        <p>Pays : {{data.infoData.country}}</p>
         <p>Email : {{data.infoData.email}}</p>
-        <p>Tel : {{data.infoData.telephone}}</p>
+        <p>Tel : {{data.infoData.phoneNumber}}</p>
         <p>Compétences : {{data.infoData.skills}}</p>
         <p>Mot de passe : {{data.infoData.password}}</p>
         <p>Confirmation de password : {{data.infoData.confirmPassword}}</p>

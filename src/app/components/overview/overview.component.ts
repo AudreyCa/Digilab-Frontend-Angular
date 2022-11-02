@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _backend: BackendService
+    ) { }
 
   ngOnInit(): void {
+    // this._backend.getProfil().subscribe((response:any) => {
+    //   console.log(response)  
+    // })
   }
 
 }

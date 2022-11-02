@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { filter } from 'rxjs';
 import { UserListModalComponent } from 'src/app/modals/user-list-modal/user-list-modal.component';
 import { User } from 'src/app/models/user.model';
+import { BackendService } from 'src/app/services/backend.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,35 +19,51 @@ export class UserListComponent implements OnInit {
   searchBar: FormControl = new FormControl();
   newArray!: any[];
   identite!: any;
+  profilInfo!: any;
+  avartarImage = 'https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM';
 
   constructor(private _userService: UserService, 
     private _matDialog: MatDialog, 
-    public fb: FormBuilder) {
+    public fb: FormBuilder,
+    private _backend: BackendService) {
      }
 
-  /**
-   * La fonction ngOnInit nous permet de récupérer la liste des user via l'API reqres.in qui se est transmis via userService
-   */
+
   ngOnInit(): void {
+    // on récupère les données du profil logué (du backend)
+    this._backend.getProfil().subscribe((response:any) => {
+      console.log(response)
+      this.profilInfo = response
+      
+    })
+
+
+    // on souscris au service user pour recup les users de l'API reqres
+    // userId  nous entrer dans le tableau là on l'on souhaite aller
+    // newArray pour stocker les users
     this._userService.getUsers().subscribe((value:any)=>{
       this.userId = value.data;
       this.newArray = [...this.userId]
     }) 
+
     // On fait un valueChanges sur notre formControl puis on souscris à la valeur rentré par l'utilisateur
     this.searchBar.valueChanges.subscribe((resultSearch:any) => {
       console.log(resultSearch)
-      console.warn("nouveau tableau", this.newArray);
+      console.warn("nouveau tableau", this.newArray)
+      // on filtre les noms et prenom pour la searchbar
       this.newArray = this.userId.filter(
         (user:any) => {
-        // resultSearch.includes(user.first_name)
        return user.first_name.toLowerCase().includes(resultSearch.toLowerCase()) ||
         user.last_name.toLowerCase().includes(resultSearch.toLowerCase())
       }
       )})
-      this._userService.getProfil().subscribe((retour:any) => {
-        console.log(retour)
-        this.identite = retour
-      })
+
+      // on souscris au service user pour récup les profils 
+      // et ensuite pouvoir les afficher dans le html
+      // this._userService.getProfil().subscribe((retour:any) => {
+      //   console.warn(retour)
+      //   this.identite = retour
+      // })
     }
 
   onOpenModal(user: User): void {

@@ -1,7 +1,8 @@
 <section>
 
-<h1>Bienvenue !</h1>
-<p>Connectez-vous</p>
+<mat-card class="card">
+    <h1>Bienvenue !</h1>
+    <p>Connectez-vous</p>
 
 <form [formGroup]="userFormConnexion" (ngSubmit)="onSubmit()">
     <!-- Input email -->
@@ -14,18 +15,19 @@
     <!-- Input password -->
     <mat-form-field appearance="fill">
         <mat-label>Mot de Passe</mat-label>
-        <input matInput formControlName="passwordConnexion" placeholder="Votre mot de passe">
+        <input matInput formControlName="password" placeholder="Votre mot de passe">
         <mat-icon matSuffix>password</mat-icon>
     </mat-form-field>
 
     <!-- Bouton submit -->
     <button mat-raised-button type="submit" color="primary" [disabled]="userFormConnexion.invalid">Valider</button>
-    <!-- Renvoyer vers overview après validation -->
+    <!-- Renvois vers overview après validation -->
 
 </form>
 
 <p>Pas encore de compte?</p>
 <p>Cliquez <a (click)="onRegister()">ici</a> pour vous inscrire</p>
-<!-- Renvoyer vers register -->
+<!-- Renvois vers register -->
+</mat-card>
 
 </section>

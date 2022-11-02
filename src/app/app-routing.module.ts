@@ -11,30 +11,29 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { TchatRoomComponent } from './components/tchat-room/tchat-room.component';
 import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.component';
 import { FinderComponent } from './components/finder/finder.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   // on en fait un vide pour la première page d'attérissage
+  // !Attention, les path sont toujours en lowercase
  {path:'', component: LoginComponent},
  {path:'register', component: RegisterComponent},
- {path:'Login', component: LoginComponent},
- {path: 'finder', component: FinderComponent},
- {path: 'tchat-room', component: TchatRoomComponent},
- {path:'overview', component: OverviewComponent, 
+ {path:'login', component: LoginComponent},
+ {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
+ {path: 'tchat-room', component: TchatRoomComponent, canActivate:[AuthGuard]},
+ {path:'overview', component: OverviewComponent, canActivate:[AuthGuard],
     children: 
-    [{path: 'directory', component: DirectoryComponent},
-    {path: 'finder', component: FinderComponent},
-     {path:'tchat', component: TchatComponent,
+    [{path: 'directory', component: DirectoryComponent, canActivate:[AuthGuard]},
+    {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
+     {path:'tchat', component: TchatComponent, canActivate:[AuthGuard],
         children: 
-        [{path:'userList', component: UserListComponent}, 
-         {path:'tchatRoom', component: TchatRoomComponent,
+        [{path:'userList', component: UserListComponent, canActivate:[AuthGuard]}, 
+         {path:'tchatRoom', component: TchatRoomComponent, canActivate:[AuthGuard],
             children:
-            [{path:'tchatTopBar', component: TchatTopBarComponent}]}
+            [{path:'tchatTopBar', component: TchatTopBarComponent, canActivate:[AuthGuard]}]}
             ]}
     ]}
   ];
-
-
-  //  {path:'overview', component: OverviewComponent, canActivate:[UserGuard], children: []}
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

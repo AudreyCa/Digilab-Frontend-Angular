@@ -1,18 +1,21 @@
 <section class="user-list-entier">
 
-    <div class="monProfil">
-        <img [src]="identite.avatar" alt="photo de profil">
-        <p>{{identite.nom}}</p>
-        <p>{{identite.prenom}}</p>
-        <p>{{identite.mail}}</p>
+    <div class="monProfil" *ngIf="profilInfo">
+        <img class="perso" [src]="avartarImage" alt="photo de profil">
+        <div class="nom-prenom">
+            <p> {{ profilInfo.lastName }} </p>
+            <p> {{ profilInfo.firstName }} </p>
+        </div>
+        <p>{{profilInfo.email}}</p>
     </div>
 
 
-    <!-- Notre input avec le formControl -->
+    <!-- Notre input -->
     <mat-form-field class="inputSearch" appearance="fill">
         <mat-label>Search</mat-label>
         <input matInput type="text" [formControl]="searchBar">
     </mat-form-field>
+    
 
     <div class="card-container">
         <mat-card class="card-contact" *ngFor="let user of newArray" (click)="onOpenModal(user)">

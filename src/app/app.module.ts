@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DirectoryComponent } from './components/directory/directory.component';
 import { DirectoryModalComponent } from './modals/directory-modal/directory-modal.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -38,6 +38,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FinderComponent } from './components/finder/finder.component';
 import { FinderModalComponent } from './modals/finder-modal/finder-modal.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +85,15 @@ import { FinderModalComponent } from './modals/finder-modal/finder-modal.compone
     MatChipsModule,
     MatSnackBarModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+    }
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

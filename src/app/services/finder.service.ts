@@ -7,6 +7,6 @@ import { GlobalHttpService } from './global-http.service';
 export class FinderService extends GlobalHttpService {
 
   getJobs() {
-    return this._http.get('/src/helpers/job.ts')
+    return this._http.get('/src/app/helpers/job.ts')
   }
 }
