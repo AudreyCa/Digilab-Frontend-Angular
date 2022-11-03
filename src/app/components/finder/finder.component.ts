@@ -54,4 +54,8 @@ export class FinderComponent implements OnInit {
       exitAnimationDuration:'800ms'})
   }
 
+  onOpenMenu() {
+    // ouvre le menu
+  }
+
 }

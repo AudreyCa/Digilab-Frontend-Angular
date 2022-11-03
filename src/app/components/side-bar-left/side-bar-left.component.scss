@@ -5,6 +5,7 @@
     height: 100vh;
     width: 100%;
     padding: 15px 15px 15px 30px;
+    position: relative;
     .nav {
         display: flex;
         flex-direction: column;
@@ -24,4 +25,18 @@
           }
         }
     }
+}
+
+.escape {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  p {
+    margin: 1px;
+  }
+  mat-icon {
+    margin: 10px 10px 10px 5px;
+  }
 }

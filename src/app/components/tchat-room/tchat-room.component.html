@@ -3,17 +3,17 @@
   <app-tchat-top-bar [idUserData]="data"></app-tchat-top-bar>
 
   <div class="tchat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-    <div *ngFor="let item of tabResults">
+    <div *ngFor="let message of arrayMessages">
 
-      <div class="right" *ngIf="item.setup">
+      <div class="right" *ngIf="message.msgSend">
         <mat-chip-list>
-          <mat-chip color="accent" selected> {{item.setup}} </mat-chip>
+          <mat-chip color="accent" selected> {{message.sent}} </mat-chip>
         </mat-chip-list>
       </div>
 
-      <div class="left" *ngIf="item.punchline">
+      <div class="left" *ngIf="message.msgRecu">
         <mat-chip-list>
-          <mat-chip  selected> {{item.punchline}} </mat-chip>
+          <mat-chip selected> {{message.received}} </mat-chip>
         </mat-chip-list>
       </div>
     </div>

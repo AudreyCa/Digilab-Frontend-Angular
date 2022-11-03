@@ -8,10 +8,12 @@
             <a routerLink="directory" routerLinkActive="active">
                 <mat-icon>folder_open</mat-icon><p>Dossiers</p>
             </a>
-            <!-- <a routerLink="finder" routerLinkActive="active">
-                <mat-icon>find_in_page</mat-icon><p>Finder</p>
-            </a> -->
             <a (click)="onClick()"><mat-icon>find_in_page</mat-icon><p>Finder</p></a>
+
+            <div class="escape" (click)="onLogOut()">
+                <p>Se déconnecter </p>
+                <mat-icon>exit_to_app</mat-icon>
+            </div>
     </div>
 
 </section>

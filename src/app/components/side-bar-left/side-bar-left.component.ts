@@ -17,4 +17,9 @@ export class SideBarLeftComponent implements OnInit {
     this._route.navigate(['/finder'])
   }
 
+  onLogOut () {
+    localStorage.clear()
+    this._route.navigate(['/login'])
+  }
+
 }

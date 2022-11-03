@@ -20,7 +20,7 @@ export class UserModalComponent implements OnInit {
 
   closeModal() {
     this._ref.close();
-    this._route.navigate(['/overview'])
+    this._route.navigate(['/login'])
   }
 
 }

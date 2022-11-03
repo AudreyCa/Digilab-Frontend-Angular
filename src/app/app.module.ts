@@ -39,6 +39,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FinderComponent } from './components/finder/finder.component';
 import { FinderModalComponent } from './modals/finder-modal/finder-modal.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+import { AddFriendModalComponent } from './modals/add-friend-modal/add-friend-modal.component';
+import { RemoveFriendModalComponent } from './modals/remove-friend-modal/remove-friend-modal.component';
+const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
 
 
 @NgModule({
@@ -63,7 +68,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     TchatTopBarComponent,
     UserListModalComponent,
     FinderComponent,
-    FinderModalComponent
+    FinderModalComponent,
+    AddFriendModalComponent,
+    RemoveFriendModalComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +90,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatChipsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    SocketIoModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     {

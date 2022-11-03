@@ -12,7 +12,24 @@ export class BackendService extends GlobalHttpService {
 
   // Attention, on precise le chemin (/register, /login, etc...) en fonction de ce que l'on fait et seulement dans les méthode pour preciser
   backend = 'http://localhost:3000/api/users';
-  private _apiUrl = `${environment.API_URL}/api/users`;
+  private _apiUrl = `${environment.API_URL}api/users`;
+
+
+  register(registerValues:User):Observable<any>{
+    return this._http.post(`${this._apiUrl}/register`, registerValues, {observe: 'response'});
+  }
+
+  login(loginValues:any):Observable<any>{
+    return this._http.post(`${this._apiUrl}/login`, loginValues, {observe: 'response'});
+  }
+
+  getProfileAPI():Observable<any>{
+    return this._http.get(`${this._apiUrl}/profile`,{observe: 'response'})
+  }
+
+  getUsersList():Observable<any>{
+    return this._http.get(`${this._apiUrl}/list`, {observe: 'response'})
+  }
 
   /**Cette méthode nous permet d'envoyer nos infos rentrées dans le register
    * vers le backend
@@ -20,7 +37,7 @@ export class BackendService extends GlobalHttpService {
    * @returns Observable
    */
   postBack (formUser: any) : Observable<any> {
-    return this._http.post(this.backend +"/register", formUser)
+    return this._http.post(this._apiUrl +"/register", formUser)
   }
 
   /**Cette méthode permet de récupérer le token via register
@@ -38,7 +55,7 @@ export class BackendService extends GlobalHttpService {
    * @returns Observable
    */
   postLogin (formLogin:any): Observable<any> {
-    return this._http.post(this.backend +"/login", formLogin)
+    return this._http.post(this._apiUrl +"/login", formLogin)
   }
 
   /**Cette méthode nous permet de mettre le token (récup au dessus) dans le headers.
@@ -48,15 +65,7 @@ export class BackendService extends GlobalHttpService {
   getProfil(): Observable<any> {
     console.log(this.getToken())
     let headerToken = new HttpHeaders().append('Authorization', `Bearer ${this.getToken()}`)
-    return this._http.get(this.backend +"/profile", {headers: headerToken})
-  }
-
-  register(registerValues: User): Observable<any> {
-    return this._http.post(`${this._apiUrl}/register`, registerValues, {observe:'response'})
-  }
-
-  login(loginValues: User): Observable<any> {
-    return this._http.post(`${this._apiUrl}/login`, loginValues, {observe:'response'})
+    return this._http.get(this._apiUrl +"/profile", {headers: headerToken})
   }
 
 }

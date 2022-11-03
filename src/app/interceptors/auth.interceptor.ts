@@ -10,11 +10,12 @@ import {
 import { catchError, Observable } from 'rxjs';
 import { BackendService } from '../services/backend.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  backendUrl = 'http://localhost:3000/api/users';
+  backendUrl = `${environment.API_URL}`;
 
   constructor(private _backend: BackendService,
     private _snackBar: MatSnackBar) {}
@@ -43,7 +44,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 break;
             } 
           // et on affiche dans une snackbar le message d'erreur
-          this._snackBar.open('Identifiant ou mot de passe incorrect', 'ok', {verticalPosition:'top'})
+          this._snackBar.open(message, 'ok', {verticalPosition:'top'})
           return next.handle(dolly)
         }))
     }

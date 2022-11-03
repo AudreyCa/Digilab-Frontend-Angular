@@ -2,11 +2,6 @@
 
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
-    <!-- en attendant l'input image -->
-    <div class="image-profil" formControlName="avatar">
-      <img [src]="avatarProfil" alt="image du profil">
-    </div>
-
     <!-- Input nom -->
     <mat-form-field appearance="fill">
       <mat-label>Nom</mat-label>

@@ -44,8 +44,13 @@ export class LoginComponent implements OnInit {
     this._backend.postLogin(this.user).subscribe((response:any) => {
       console.log('envoyé au backend: ' + response)
       console.log('token ' + response.token)
+
       // on récupère le token pour le stocker dans le localStorage avec setItem
-      localStorage.setItem('token', response.token)})
+      localStorage.setItem('token', response.token)
+    
+      this._route.navigate(['/overview'])
+
+    })
     
 
     // On récupère le mail du formulaire ci dessus
@@ -60,7 +65,6 @@ export class LoginComponent implements OnInit {
     })
 
     // pour le routing
-    this._route.navigate(['/overview'])
   }
 
   /**Cette méthode nous permet de renvoyer 

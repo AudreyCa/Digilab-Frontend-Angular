@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
   filteredOptions!: Observable<string[]>;
   userForm!: FormGroup;
   user = new User();
-  avatarProfil = 'https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM';
 
 constructor(private _dataService: DataService, 
   private _userService: UserService, 
@@ -60,10 +59,11 @@ constructor(private _dataService: DataService,
       zipCode: [this.user.zipCode, Validators.required],
       country:[this.user.country, Validators.required],
       skills: new FormArray([]),
-      avatar: this.user.avatar,
       password:[this.user.password, [Validators.required, Validators.minLength(8)]],
       confirmPassword:[this.user.confirmPassword, [Validators.required, Validators.minLength(8)]]
     })
+
+    this.user.avatar = 'https://dailygeekshow.com/wp-content/uploads/sites/2/2015/08/ahri_chibi_by_fuka_enrique-d712r8z.jpg';
 
   }
 
@@ -108,11 +108,14 @@ constructor(private _dataService: DataService,
     console.warn(this.user)
     // puis on les envoie au backend
     // et on affiche les data reçues du formulaire dans la modale :
-    this._backend.postBack(this.user).subscribe((response:any) => {
+    this._backend.register(this.user).subscribe((response:any) => {
+      let {headers, status, body} = response
       console.log('envoyé au backend: ' + response)
       console.log('token ' + response.token)
       // on récupère le token pour le stocker dans le localStorage avec setItem
-      localStorage.setItem('token', response.token)})
+      localStorage.setItem('token', response.token)
+    })
+
   }
 
   get skills() {

@@ -21,8 +21,14 @@
                 float: right;
                 margin: 1% 5%;
             }
+            mat-chip {
+                width: 100%;
+                height: max-content;
+                padding: 10px;
+            }
         }
 }
+
 
 .input-chat { 
     display: flex; 

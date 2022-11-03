@@ -1,7 +1,7 @@
 <section class="user-list-entier">
 
     <div class="monProfil" *ngIf="profilInfo">
-        <img class="perso" [src]="avartarImage" alt="photo de profil">
+        <img class="perso" [src]="profilInfo.avatar" alt="photo de profil">
         <div class="nom-prenom">
             <p> {{ profilInfo.lastName }} </p>
             <p> {{ profilInfo.firstName }} </p>
@@ -17,14 +17,20 @@
     </mat-form-field>
     
 
-    <div class="card-container">
-        <mat-card class="card-contact" *ngFor="let user of newArray" (click)="onOpenModal(user)">
-                <img mat-card-avatar [src]="user.avatar">
-                <div class="id">
-                    <mat-card-content>{{ user.first_name }}</mat-card-content>
-                    <mat-card-content>{{ user.last_name }}</mat-card-content>
-                </div>             
-        </mat-card>
-    </div>
+    <mat-card class="card-container">
+        <mat-list class="card-contact" [style]="backgroundCard" *ngFor="let user of newArray">
+            <mat-list-item>
+                <div matLine class="id">
+                    <img mat-card-avatar [src]="user.avatar" (click)="onOpenModal(user)">
+                    <p matLine (click)="onOpenModal(user)">{{ user.firstName }}</p>
+                    <p matLine (click)="onOpenModal(user)">{{ user.lastName }}</p>
+                </div>  
+                <div class="boutons">
+                    <mat-icon (click)="onAddFriend(user)">person_add</mat-icon>
+                    <mat-icon (click)="onRemoveFriend(user)">remove_circle_outline</mat-icon>        
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
 
 </section>
