@@ -53,7 +53,7 @@ export class TchatService {
   getMyMessage() {
     this._socket.on("friend message sent", (data:any)=> {
       console.log(data)
-      return data
+      this.setMyMessage(data)
     })
   }
 
@@ -74,11 +74,13 @@ export class TchatService {
   }
 
   /** méthode qui écoute tout le temps .on
+   * Attention, ne retourne rien (void),
+   * donc pour les utiliser, les passer via la méthode set...
    */
   getMsgSent() {
     this._socket.on ('friend message', (message: any)=> {
       console.log('message recu ', message)
-      return message
+      this.setMsgSent(message)
     })
   }
 
@@ -93,8 +95,8 @@ export class TchatService {
     /** Méthode qui retourne TOUS les messages recu et envoyé
     * @returns Observable
     */
-   getFriendMessages():Observable<any>{
-    return this._http.get(`${environment.API_URL}api/messages/friendmessages`)
+  getFriendMessages(username: any):Observable<any>{
+    return this._http.get(`${environment.API_URL}api/messages/friendmessages/${username}`)
   }
 
   /** Cette méthode nous permet d'afficher la liste des amis issus du backend

@@ -37,8 +37,14 @@
     margin: 0 5px;
     height: 100px;
     input{
-        height: 50px;
+        min-height: 30px;
         background-color: #f5f3f1;
         margin-right: 1%;
+        margin-bottom: 7px;
+        padding: 10px;
     }
+}
+
+mat-hint {
+    font-size: 10px;
 }

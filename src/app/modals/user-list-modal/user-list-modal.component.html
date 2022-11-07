@@ -3,7 +3,7 @@
 
 
     <mat-card class="identity">
-        <img mat-card-avatar [src]="dataUser.avatar">
+        <img mat-card-avatar [src]="dataUser.avatar" *ngIf="dataUser.avatar">
         <div class="name">
             <span> {{ dataUser.firstName }} </span>
             <span> {{ dataUser.lastName }} </span>

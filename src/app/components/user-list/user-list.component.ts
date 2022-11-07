@@ -66,7 +66,7 @@ export class UserListComponent implements OnInit {
     })
     // après la fermeture, je souscris aux infos de la modale
     modalRef.afterClosed().subscribe((responseFromModal: User) => {
-      console.log(responseFromModal)
+      // console.log(responseFromModal)
       if (responseFromModal) {
         this._userService.setUserCurrent(user)
       }

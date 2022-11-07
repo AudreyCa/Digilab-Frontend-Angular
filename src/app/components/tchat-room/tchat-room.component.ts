@@ -1,6 +1,6 @@
-import { getLocaleDayNames } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { TchatService } from 'src/app/services/tchat.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,56 +11,73 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TchatRoomComponent implements OnInit {
 
-  data!:any;
+  userCurrent!:any;
   messageText: FormControl = new FormControl();
   // Avec l'API jokes
   // tabResults: any[] = [];
   arrayMessages: any[] = [];
   msgRecu!: string;
   msgSend!: string;
-
+  messagesgSent!: any[];
+  messagesReceived!: any[];
+  nameUser!: string;
+  myName!: string;
 
   constructor(private _userService: UserService,
-    private _tchatServ: TchatService) { }
+    private _tchatServ: TchatService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+   
     // On initie la conversation
-    this._tchatServ.initConversation("msg: string")
-
+    this._tchatServ.initConversation("msg:string")
+    
     // on écoute constamment pour afficher les messages que j'envoie
     this._tchatServ.getMyMessage()
-
-    // POur écouter tout le temps la reception des messages
+    
+    // Pour écouter tout le temps la reception des messages
     this._tchatServ.getMsgSent()
-
-    // on écoute constamment pour recevoir les messages quand on les recois en ligne
-    this._tchatServ.getMessageToReceived().subscribe((messageReceived: any) => {
-      console.warn('message recu qu\'on veut afficher dans le chat '+ messageReceived)
+    
+    
+    // on écoute constamment pour souscrire à mes messages (à envoyer)
+    this._tchatServ.getMessageToSend().subscribe((messageSend: any) => {
+      this.msgSend = messageSend.content
+      console.warn('ici sent ', this.msgSend);
       let date = new Date();
       let hour = date.getHours();
       let day = date.getDay();
-      this.arrayMessages.push({message: messageReceived, day: day, hour: hour})
+      this.arrayMessages.push({sent: this.msgSend, day:day, hour: hour})
     })
-
-   // on écoute constamment pour recevoir les messages quand on les recois en ligne 
-   this._tchatServ.getMessageToSend().subscribe((messageSend: any) => {
-    console.warn('message qu\'on envoie qu\'on veut afficher dans le chat '+ messageSend)
-    this.msgSend = messageSend
-    this.arrayMessages.push({msgSend: this.msgSend})
-  })
-
+    
+    // on écoute constamment pour souscrire aux messages (à recevoir)
+    this._tchatServ.getMessageToReceived().subscribe((messageReceived: any) => {
+      this._snackBar.open('Message reçu de : ' + this.nameUser, 'ok')
+      this.msgRecu = messageReceived.content
+      console.warn('ici received ', this.msgRecu);
+      let date = new Date();
+      let hour = date.getHours();
+      let day = date.getDay();
+      this.arrayMessages.push({received: this.msgRecu, day: day, hour: hour})
+    })
+    
+    
     // la methode getUserCurrent reagi uniquement au préalable
     // si la méthode SetUserCurrent est appelé
     this._userService.getUserCurrent().subscribe((response: any) => {
-      console.log(response)
-      this.data = response
+      this.userCurrent = response
+      console.warn('ici userCurrent : ',this.userCurrent);
+      console.log('ici username du userCurrent : ',this.userCurrent.username);
       // puis affiche tous les messages précédants
-      this._tchatServ.getFriendMessages().subscribe((value: any) => {
-        console.warn(value)
+      this._tchatServ.getFriendMessages(this.userCurrent.username).subscribe((value: any) => {
         this.arrayMessages = value
+        console.warn('tout le tableau (arrayMessage): ', value)
+        this.nameUser = this.arrayMessages[0].friendID.username
+        console.log('nameUser: ', this.nameUser);
+        this.myName = this.arrayMessages[0].userID.username
+        console.log('myName: ', this.myName);
       })
     })
-
+    
   }
 
   onSend() {
@@ -68,9 +85,9 @@ export class TchatRoomComponent implements OnInit {
     const msg = this.messageText.value
 
     // le message que j'envoie/emit
-    this._tchatServ.sendMessage(this.data, msg)
+    this._tchatServ.sendMessage(this.userCurrent, msg)
 
-    this.arrayMessages.push({MsgSend: this.messageText.value})
+    // this.arrayMessages.push({Sent: this.messageText.value})
     
     // pour effacer le message dans l'input une fois envoyé :
     this.messageText.reset()
@@ -93,3 +110,7 @@ export class TchatRoomComponent implements OnInit {
   }
 
 }
+
+
+
+     // .pipe(map((userID: Chatmessage) => userID))

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { BackendService } from 'src/app/services/backend.service';
-
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

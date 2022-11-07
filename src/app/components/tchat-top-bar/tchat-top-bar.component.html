@@ -2,7 +2,7 @@
 
     <div *ngIf="idUserData">
         <!-- <span>{{data | json}}</span> -->
-        <img [src]="idUserData.avatar" alt="photo de profil">
+        <img [src]="idUserData.avatar" alt="photo de profil" *ngIf="idUserData.avatar">
         <span> {{ idUserData.firstName }} </span>
         <span> {{ idUserData.lastName }} </span>
     </div>

@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
     private _snackBar: MatSnackBar) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.warn('request ', request.url)
+    console.log('request auth interceptor', request.url)
     const token = this._backend.getToken();
     // Pour éviter les conflits avec les API :
     // Si la requete inclus notre adresse backend..

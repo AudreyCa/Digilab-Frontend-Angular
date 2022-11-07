@@ -20,7 +20,7 @@ export class UserListModalComponent implements OnInit {
   private _dialogRef: MatDialogRef<UserListModalComponent>) {}
 
   ngOnInit(): void {
-    console.log(this.dataUser);
+    // console.log(this.dataUser);
   }
 
   onValidate(): void {
