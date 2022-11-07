@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
     console.log(this.user)
     // On envoie au backend ce qu'on a fait avec Oject assign
     this._backend.postLogin(this.user).subscribe((response:any) => {
-      console.log('envoyé au backend: ' + response)
       console.log('token ' + response.token)
 
       // on récupère le token pour le stocker dans le localStorage avec setItem

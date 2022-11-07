@@ -2,24 +2,29 @@
 
   <app-tchat-top-bar [idUserData]="userCurrent"></app-tchat-top-bar>
 
-  <div class="tchat"#scrollMe [scrollTop]="scrollMe.scrollHeight">
+  <div class="tchat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <div *ngFor="let message of arrayMessages">
 
-      <div *ngIf="message" >
-        <mat-chip-list class="right">
-          <mat-hint>mes messages</mat-hint>
-          <mat-chip color="accent" selected><p>{{message.content}}</p></mat-chip>
-          <mat-hint>{{message.date | date: "dd/MM hh:mm"}}</mat-hint>
-        </mat-chip-list>
-      </div>
-
-      <div *ngIf="message" >
-        <mat-chip-list class="left">
+      <div *ngIf="userCurrent.username == message.userID.username; else rightInfo" class="left">
+        <mat-chip-list>
           <mat-hint>{{userCurrent.username}}</mat-hint>
-          <mat-chip color="primary" selected><p>{{message.content}}</p></mat-chip>
+          <mat-chip color="primary" selected>
+            {{message.content}}
+          </mat-chip>
           <mat-hint>{{message.date | date: "dd/MM hh:mm"}}</mat-hint>
         </mat-chip-list>
       </div>
+      <ng-template #rightInfo>
+        <div class="right">
+          <mat-chip-list>
+            <mat-hint>mes messages</mat-hint>
+            <mat-chip color="accent" selected>
+              {{message.content}}
+            </mat-chip>
+            <mat-hint>{{message.date | date: "dd/MM hh:mm"}}</mat-hint>
+          </mat-chip-list>
+        </div>
+      </ng-template>
 
     </div>
 
@@ -30,7 +35,7 @@
 
 
 <div class="input-chat">
-  <input *ngIf="userCurrent" [formControl]="messageText" (keypress)="onSendMessage($event)" matInput placeholder=" Votre message..."
-    type="text">
+  <input *ngIf="userCurrent" [formControl]="messageText" (keypress)="onSendMessage($event)" matInput
+    placeholder=" Votre message..." type="text">
   <mat-icon class="bouton" *ngIf="userCurrent" class="icon-send" matSuffix (click)="onSend()">send</mat-icon>
 </div>

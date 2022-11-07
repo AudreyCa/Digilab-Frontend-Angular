@@ -12,6 +12,7 @@ export class TchatService {
   
   messageSendToDisplay = new Subject();
   messageReceivedToDisplay = new Subject();
+  usersOnLine = new Subject();
   
   constructor(private _http: HttpClient,
     private _socket: Socket,
@@ -115,6 +116,7 @@ export class TchatService {
     // En deuxième : un object contenant le friend grâce à username qui appartient à user et qu'on nommera friendName (doc)
     return this._http.post(`${environment.API_URL}api/users/addfriend`, {friendName: user.username})
   }
+
   /** Méthode qui permet de supprimer de la liste d'amis mais garde en utilisateurs du tchat
    * @param  {any} user
    * @returns Observable
@@ -123,7 +125,24 @@ export class TchatService {
     return this._http.post(`${environment.API_URL}api/users/removefriend`, {friendName: user.username})
   }
 
-}
+  /** méthode qui écoute tout le temps la liste des utilsateurs en ligne
+   * et on la next
+   */
+  friendsOnLine() {
+    this._socket.on ('users list', (users: any)=> {
+      console.log('liste des utilsateurs connectés ', users)
+      this.usersOnLine.next(users)
+    })
+  }
 
-    // let headerToken = new HttpHeaders().append('Authorization', `Bearer ${this.getToken()}`)
-    // return this._http.get(this._apiUrl +"/profile", {headers: headerToken})
+  /** méthode qui permet d'afficher si les users sont en ligne
+   * ".on" (ecoute tout le temps)
+   * @returns Observable
+   */
+  getFriendsOnline(): Observable<any> {
+    return this.usersOnLine.asObservable()
+  }
+
+
+
+}

@@ -43,6 +43,8 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { AddFriendModalComponent } from './modals/add-friend-modal/add-friend-modal.component';
 import { RemoveFriendModalComponent } from './modals/remove-friend-modal/remove-friend-modal.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatBadgeModule } from '@angular/material/badge';
 const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
 
 
@@ -92,7 +94,9 @@ const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
     MatChipsModule,
     MatSnackBarModule,
     SocketIoModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    MatSlideToggleModule,
+    MatBadgeModule
   ],
   providers: [
     {

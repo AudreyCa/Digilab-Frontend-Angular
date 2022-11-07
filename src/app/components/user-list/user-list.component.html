@@ -15,19 +15,51 @@
         <mat-label>Search</mat-label>
         <input matInput type="text" [formControl]="searchBar">
     </mat-form-field>
+
+    <!-- slide users ou friends -->
+    <div class="slide">
+        <mat-slide-toggle  [(ngModel)]="isFriend" color="primary">{{ isFriend ? 'Mes Amis' : 'Toute le monde' }}</mat-slide-toggle>
+    </div>
     
 
-    <div class="card-container">
-        <mat-list class="card-contact" [style]="backgroundCard" *ngFor="let user of newArray">
+    <div *ngIf="!isFriend" class="card-container">
+        <mat-list class="card-contact" [style]="backgroundCard" *ngFor="let user of allUsers">
             <mat-list-item>
                 <div matLine class="id" (click)="onOpenModal(user)">
-                    <img mat-card-avatar [src]="user.avatar" *ngIf="user.avatar">
+                    <div class="badge" [matBadge]="nbMessageEnAttente" matBadgePosition="after" matBadgeColor="primary">
+                        <img matListAvatar [src]="user.avatar" *ngIf="user.avatar; else alter">
+                        <ng-template #alter>
+                            <img [src]="imgDefault" alt="">
+                        </ng-template>
+                    </div>
                     <p matLine>{{ user.firstName }}</p>
                     <p matLine>{{ user.lastName }}</p>
                 </div>  
                 <div class="boutons">
-                    <mat-icon matLine (click)="onAddFriend(user)">person_add</mat-icon>
-                    <mat-icon matLine (click)="onRemoveFriend(user)">remove_circle_outline</mat-icon>        
+                    <mat-icon matLine (click)="onAddFriend(user)" *ngIf="isFriend == false">person_add</mat-icon>
+                    <mat-icon matLine class="remove" (click)="onRemoveFriend(user)">remove_circle_outline</mat-icon>                 
+                    <div class="online" *ngIf="user.online"></div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <div *ngIf="isFriend" class="card-container">
+        <mat-list class="card-contact" [style]="backgroundCard" *ngFor="let user of newFriends">
+            <mat-list-item>
+                <div matLine class="id" (click)="onOpenModal(user)">
+                    <div class="badge" [matBadge]="user.nbMessageEnAttente" matBadgePosition="after" matBadgeColor="primary">
+                        <img matListAvatar [src]="user.avatar" *ngIf="user.avatar; else alter">
+                        <ng-template #alter>
+                            <img [src]="imgDefault" alt="">
+                        </ng-template>
+                    </div>
+                    <p matLine>{{ user.firstName }}</p>
+                    <p matLine>{{ user.lastName }}</p>
+                </div>  
+                <div class="boutons">
+                    <mat-icon matLine class="remove" (click)="onRemoveFriend(user)">remove_circle_outline</mat-icon>                 
+                    <div class="online" *ngIf="user.online"></div>
                 </div>
             </mat-list-item>
         </mat-list>

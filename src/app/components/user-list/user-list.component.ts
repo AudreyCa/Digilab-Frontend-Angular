@@ -18,11 +18,14 @@ export class UserListComponent implements OnInit {
   userId!:any[];
   // Pour l'input de recherche, on instancie un nouveau FormControl
   searchBar: FormControl = new FormControl();
-  newArray!: any[];
+  allUsers!: any[];
   identite!: any;
   profilInfo!: any;
   newFriends: any;
   backgroundCard = "backgroundColor:rgba(233, 231, 231, 0.89)";
+  nbMessageEnAttente!: number;
+  imgDefault = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+  isFriend!: boolean;
 
   constructor(private _userService: UserService, 
     private _matDialog: MatDialog, 
@@ -33,29 +36,46 @@ export class UserListComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    // Pour récupérer la liste de mes amis. On est obligé de passer par la requete.
+    this._tchatServ.getFriend().subscribe((myFriends: any) => {
+      this.newFriends = myFriends
+    })
+
     // on récupère les données du profil logué (du backend)
     this._backend.getProfileAPI().subscribe((response:any) => {
-      console.log(response.body)
       this.profilInfo = response.body
     })
 
-
     // on souscris au service user pour recup les users de l'API du backend
     // userId  nous entrer dans le tableau là on l'on souhaite aller
-    // newArray pour stocker les users
+    // allUsers pour stocker les users
     this._backend.getUsersList().subscribe((value:any)=>{
       this.userId = value.body;
-      this.newArray = [...this.userId]
+      this.allUsers = [...this.userId]
     }) 
 
 
+       this._tchatServ.friendsOnLine();
 
-      // on souscris au service user pour récupérer les profils 
-      // et ensuite pouvoir les afficher dans le html
-      // this._userService.getProfil().subscribe((retour:any) => {
-      //   console.warn(retour)
-      //   this.identite = retour
-      // })
+      this._tchatServ.getFriendsOnline().subscribe((usersOnline:any)=>{
+        // console.log('liste des users connectés :' + usersOnline);
+        this.allUsers.forEach((userTab:any) => {
+          if((usersOnline).includes(userTab.username)) {
+            userTab.online = true
+          }
+        })
+      })
+
+      this._tchatServ.getMessageToReceived().subscribe((messageRecu: any)=>{
+        this.allUsers.forEach((user:any)=>{
+          if(user.username == messageRecu.userID.username) {
+            if(user.username) {
+              user.nbMessageEnAttente = user.nbMessageEnAttente +1
+            } else (user.nbMessageEnAttente = 0)
+          }
+        })
+      })
     }
 
   onOpenModal(user: User): void {
@@ -75,11 +95,13 @@ export class UserListComponent implements OnInit {
 
   onAddFriend(user: any) {
     this._tchatServ.addFriend(user).subscribe((ami: any) => {
-      ami = this.newFriends
+      this.newFriends = ami
       if (ami) {
         this.newFriends.push(user)
+        console.log('tab amis : ', this.newFriends);
         this.backgroundCard = "backgroundColor:aqua";
         console.warn(this.newFriends);
+
       }
     })
   }
@@ -87,11 +109,16 @@ export class UserListComponent implements OnInit {
   onRemoveFriend(user: any) {
     this._tchatServ.removeFriend(user).subscribe((nonAmi: any) => {
       if (nonAmi) {
-        this.newFriends.pop(user)
+        this.newFriends.delete(user)
         this.backgroundCard = "backgroundColor:antiquewhite";
         console.warn(this.newFriends);
+        this.isFriend = false
       }
     })
   }
+
+  // pour le slide : 
+  // tableau de tous les utilisateurs : allUsers 
+  // et tableau des amis : newFriends
   
 }

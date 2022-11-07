@@ -16,12 +16,8 @@ export class TchatRoomComponent implements OnInit {
   // Avec l'API jokes
   // tabResults: any[] = [];
   arrayMessages: any[] = [];
-  msgRecu!: string;
-  msgSend!: string;
   messagesgSent!: any[];
-  messagesReceived!: any[];
-  nameUser!: string;
-  myName!: string;
+  messagesReceived!: any[]; 
 
   constructor(private _userService: UserService,
     private _tchatServ: TchatService,
@@ -41,40 +37,35 @@ export class TchatRoomComponent implements OnInit {
     
     // on écoute constamment pour souscrire à mes messages (à envoyer)
     this._tchatServ.getMessageToSend().subscribe((messageSend: any) => {
-      this.msgSend = messageSend.content
-      console.warn('ici sent ', this.msgSend);
+      console.warn('message que j\'envoie ', messageSend.content);
       let date = new Date();
       let hour = date.getHours();
       let day = date.getDay();
-      this.arrayMessages.push({sent: this.msgSend, day:day, hour: hour})
+      this.arrayMessages.push(messageSend)
     })
     
     // on écoute constamment pour souscrire aux messages (à recevoir)
-    this._tchatServ.getMessageToReceived().subscribe((messageReceived: any) => {
-      this._snackBar.open('Message reçu de : ' + this.nameUser, 'ok')
-      this.msgRecu = messageReceived.content
-      console.warn('ici received ', this.msgRecu);
-      let date = new Date();
-      let hour = date.getHours();
-      let day = date.getDay();
-      this.arrayMessages.push({received: this.msgRecu, day: day, hour: hour})
+    this._tchatServ.getMessageToReceived().subscribe((msgReceveidOnline: any) => {
+      if (msgReceveidOnline.userID.username != this.userCurrent.username){
+        this._snackBar.open('Message reçu de : ' + msgReceveidOnline.userID.username, 'ok', {verticalPosition: 'top'})
+        
+      } else {
+              console.warn('ici received ', msgReceveidOnline.content);
+      this.arrayMessages.push(msgReceveidOnline)
+      } 
+
     })
     
     
     // la methode getUserCurrent reagi uniquement au préalable
     // si la méthode SetUserCurrent est appelé
-    this._userService.getUserCurrent().subscribe((response: any) => {
-      this.userCurrent = response
+    this._userService.getUserCurrent().subscribe((user: any) => {
+      this.userCurrent = user
       console.warn('ici userCurrent : ',this.userCurrent);
       console.log('ici username du userCurrent : ',this.userCurrent.username);
       // puis affiche tous les messages précédants
       this._tchatServ.getFriendMessages(this.userCurrent.username).subscribe((value: any) => {
         this.arrayMessages = value
-        console.warn('tout le tableau (arrayMessage): ', value)
-        this.nameUser = this.arrayMessages[0].friendID.username
-        console.log('nameUser: ', this.nameUser);
-        this.myName = this.arrayMessages[0].userID.username
-        console.log('myName: ', this.myName);
       })
     })
     

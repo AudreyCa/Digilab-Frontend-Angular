@@ -14,6 +14,7 @@
             overflow-y: scroll;
             overflow-x: hidden;
             justify-content: space-between;
+            padding: 10px;
             .left {
                 margin: 2% 5%;
             }
@@ -22,9 +23,10 @@
                 margin: 1% 5%;
             }
             mat-chip {
-                width: 100%;
-                height: max-content;
+                width: max-content;
+                height: min-content;
                 padding: 10px;
+                border-radius: 5px;
             }
         }
 }

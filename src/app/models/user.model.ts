@@ -26,6 +26,7 @@ export class User {
     birthDate?: number;
     password?: string;
     confirmPassword?: string;
+    online?: boolean;
 
 
     constructor() {}

@@ -25,6 +25,13 @@
     }
 }
 
+.slide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
 .card-container {
     padding: 5px;
     margin-bottom: 80px;
@@ -42,20 +49,22 @@
     margin-bottom: 5px;
     padding: 10px;
     background-color: rgba(240, 236, 236, 0.589);
-    // overflow:hidden;
-    // box-sizing: border-box;
     .id {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: auto;
         cursor: pointer;
-        img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin: 10px;
-            cursor: pointer;
+        .badge {
+            margin-top: 20px;
+            width: 45px;
+            height: 50px;
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-top: -10px;
+            }
         }
         p {
             line-height: 15px;
@@ -64,13 +73,23 @@
     }
     .boutons {
         width: 10px;
-        height: 100%;
+        height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         mat-icon {
             font-size: 20px;
+        }
+        .remove {
+            margin-left: 3px;
+        }
+        .online{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: green;
+            margin-top: 5px;
         }
     }
 }
