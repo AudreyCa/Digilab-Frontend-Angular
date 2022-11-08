@@ -18,15 +18,15 @@
 
     <!-- slide users ou friends -->
     <div class="slide">
-        <mat-slide-toggle  [(ngModel)]="isFriend" color="primary">{{ isFriend ? 'Mes Amis' : 'Toute le monde' }}</mat-slide-toggle>
+        <mat-slide-toggle  [(ngModel)]="isFriend" color="primary">{{ isFriend ? 'Mes Amis' : 'Tout le monde' }}</mat-slide-toggle>
     </div>
     
 
     <div *ngIf="!isFriend" class="card-container">
-        <mat-list class="card-contact" [style]="backgroundCard" *ngFor="let user of allUsers">
+        <mat-list class="card-contact" *ngFor="let user of allUsers">
             <mat-list-item>
                 <div matLine class="id" (click)="onOpenModal(user)">
-                    <div class="badge" [matBadge]="nbMessageEnAttente" matBadgePosition="after" matBadgeColor="primary">
+                    <div class="badge" [matBadge]="user.nbMessageEnAttente" matBadgePosition="after" matBadgeColor="primary">
                         <img matListAvatar [src]="user.avatar" *ngIf="user.avatar; else alter">
                         <ng-template #alter>
                             <img [src]="imgDefault" alt="">
@@ -44,8 +44,8 @@
         </mat-list>
     </div>
 
-    <div *ngIf="isFriend" class="card-container">
-        <mat-list class="card-contact" [style]="backgroundCard" *ngFor="let user of newFriends">
+    <div *ngIf="isFriend" class="card-container" [style]="backgroundColorFriend">
+        <mat-list class="card-contact" *ngFor="let user of newFriends">
             <mat-list-item>
                 <div matLine class="id" (click)="onOpenModal(user)">
                     <div class="badge" [matBadge]="user.nbMessageEnAttente" matBadgePosition="after" matBadgeColor="primary">

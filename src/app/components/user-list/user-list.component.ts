@@ -22,10 +22,9 @@ export class UserListComponent implements OnInit {
   identite!: any;
   profilInfo!: any;
   newFriends: any;
-  backgroundCard = "backgroundColor:rgba(233, 231, 231, 0.89)";
-  nbMessageEnAttente!: number;
+  backgroundColorFriend = "rgb(23, 23, 217)";
+  isFriend  = false;
   imgDefault = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-  isFriend!: boolean;
 
   constructor(private _userService: UserService, 
     private _matDialog: MatDialog, 
@@ -59,7 +58,6 @@ export class UserListComponent implements OnInit {
        this._tchatServ.friendsOnLine();
 
       this._tchatServ.getFriendsOnline().subscribe((usersOnline:any)=>{
-        // console.log('liste des users connectés :' + usersOnline);
         this.allUsers.forEach((userTab:any) => {
           if((usersOnline).includes(userTab.username)) {
             userTab.online = true
@@ -70,9 +68,9 @@ export class UserListComponent implements OnInit {
       this._tchatServ.getMessageToReceived().subscribe((messageRecu: any)=>{
         this.allUsers.forEach((user:any)=>{
           if(user.username == messageRecu.userID.username) {
-            if(user.username) {
-              user.nbMessageEnAttente = user.nbMessageEnAttente +1
-            } else (user.nbMessageEnAttente = 0)
+            if(user.nbMessageEnAttente) {
+             user.nbMessageEnAttente = user.nbMessageEnAttente + 1
+            } else {user.nbMessageEnAttente = 1}
           }
         })
       })
@@ -99,7 +97,6 @@ export class UserListComponent implements OnInit {
       if (ami) {
         this.newFriends.push(user)
         console.log('tab amis : ', this.newFriends);
-        this.backgroundCard = "backgroundColor:aqua";
         console.warn(this.newFriends);
 
       }
@@ -109,16 +106,11 @@ export class UserListComponent implements OnInit {
   onRemoveFriend(user: any) {
     this._tchatServ.removeFriend(user).subscribe((nonAmi: any) => {
       if (nonAmi) {
-        this.newFriends.delete(user)
-        this.backgroundCard = "backgroundColor:antiquewhite";
+        this.newFriends.pop(user)
         console.warn(this.newFriends);
         this.isFriend = false
       }
     })
   }
-
-  // pour le slide : 
-  // tableau de tous les utilisateurs : allUsers 
-  // et tableau des amis : newFriends
   
 }

@@ -47,11 +47,11 @@ export class TchatRoomComponent implements OnInit {
     // on écoute constamment pour souscrire aux messages (à recevoir)
     this._tchatServ.getMessageToReceived().subscribe((msgReceveidOnline: any) => {
       if (msgReceveidOnline.userID.username != this.userCurrent.username){
-        this._snackBar.open('Message reçu de : ' + msgReceveidOnline.userID.username, 'ok', {verticalPosition: 'top'})
+        this._snackBar.open(`${msgReceveidOnline.userID.username} vous a envoyé :  ${msgReceveidOnline.content} `, 'ok', { verticalPosition: 'top' })
         
       } else {
-              console.warn('ici received ', msgReceveidOnline.content);
-      this.arrayMessages.push(msgReceveidOnline)
+        console.warn('ici received ', msgReceveidOnline.content);
+        this.arrayMessages.push(msgReceveidOnline)
       } 
 
     })
@@ -61,6 +61,10 @@ export class TchatRoomComponent implements OnInit {
     // si la méthode SetUserCurrent est appelé
     this._userService.getUserCurrent().subscribe((user: any) => {
       this.userCurrent = user
+      // Pour vider les badges
+      if (this.userCurrent.nbMessageEnAttente) {
+        this.userCurrent.nbMessageEnAttente = null;
+      }
       console.warn('ici userCurrent : ',this.userCurrent);
       console.log('ici username du userCurrent : ',this.userCurrent.username);
       // puis affiche tous les messages précédants

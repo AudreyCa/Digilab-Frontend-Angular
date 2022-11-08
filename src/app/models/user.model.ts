@@ -27,7 +27,7 @@ export class User {
     password?: string;
     confirmPassword?: string;
     online?: boolean;
-
+    nbMessageEnAttente?: number;
 
     constructor() {}
 
