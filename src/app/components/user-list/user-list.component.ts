@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
 import { filter } from 'rxjs';
 import { UserListModalComponent } from 'src/app/modals/user-list-modal/user-list-modal.component';
 import { User } from 'src/app/models/user.model';
@@ -22,9 +23,10 @@ export class UserListComponent implements OnInit {
   identite!: any;
   profilInfo!: any;
   newFriends: any;
-  backgroundColorFriend = "rgb(23, 23, 217)";
+  backgroundColorFriend = "backgroundColor = rgb(23, 23, 217)";
   isFriend  = false;
   imgDefault = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+  friendOnline!: any;
 
   constructor(private _userService: UserService, 
     private _matDialog: MatDialog, 
@@ -67,6 +69,13 @@ export class UserListComponent implements OnInit {
 
       this._tchatServ.getMessageToReceived().subscribe((messageRecu: any)=>{
         this.allUsers.forEach((user:any)=>{
+          if(user.username == messageRecu.userID.username) {
+            if(user.nbMessageEnAttente) {
+             user.nbMessageEnAttente = user.nbMessageEnAttente + 1
+            } else {user.nbMessageEnAttente = 1}
+          }
+        })
+        this.newFriends.forEach((user:any)=>{
           if(user.username == messageRecu.userID.username) {
             if(user.nbMessageEnAttente) {
              user.nbMessageEnAttente = user.nbMessageEnAttente + 1

@@ -4,6 +4,7 @@ import { Socket } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { BackendService } from './backend.service';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class TchatService {
    * avec .emit dans le salon login (cf. doc)
    * @param  {string} message
    */
-  initConversation(message: string) {
+  initConversation(message: string): void {
     this._socket.emit("login", {token: this._backend.getToken()});
   } 
 
@@ -34,7 +35,7 @@ export class TchatService {
    * @param  {any} user
    * @param  {string} message
    */
-  sendMessage(user: any, message: string) {
+  sendMessage(user: any, message: string): void {
     this._socket.emit("send friend message", {friendName: user.username, content: message});
   }
 
@@ -51,7 +52,7 @@ export class TchatService {
    * via le salon "friend message sent"
    * via .on car toujours en écoute
    */
-  getMyMessage() {
+  getMyMessage(): void {
     this._socket.on("friend message sent", (data:any)=> {
       console.log(data)
       this.setMyMessage(data)
@@ -78,7 +79,7 @@ export class TchatService {
    * Attention, ne retourne rien (void),
    * donc pour les utiliser, les passer via la méthode set...
    */
-  getMsgSent() {
+  getMsgSent(): void {
     this._socket.on ('friend message', (message: any)=> {
       console.log('message recu ', message)
       this.setMsgSent(message)
@@ -95,8 +96,9 @@ export class TchatService {
 
     /** Méthode qui retourne TOUS les messages recu et envoyé
     * @returns Observable
+    * @param  {User} username
     */
-  getFriendMessages(username: any):Observable<any>{
+  getFriendMessages(username: User):Observable<any>{
     return this._http.get(`${environment.API_URL}api/messages/friendmessages/${username}`)
   }
 
@@ -109,26 +111,27 @@ export class TchatService {
 
   /** Cette méthode nous permet d'ajouter des amis (backend)
    * ("username" vient de la doc et est de type string)
-   * @param  {any} user
+   * @param  {User} user
+   * @returns Observable
    */
-  addFriend(user: any): Observable<any> {
+  addFriend(user: User): Observable<any> {
     //  En premier param le salon/canal
     // En deuxième : un object contenant le friend grâce à username qui appartient à user et qu'on nommera friendName (doc)
     return this._http.post(`${environment.API_URL}api/users/addfriend`, {friendName: user.username})
   }
 
   /** Méthode qui permet de supprimer de la liste d'amis mais garde en utilisateurs du tchat
-   * @param  {any} user
+   * @param  {User} user
    * @returns Observable
    */
-  removeFriend(user:any): Observable<any> {
+  removeFriend(user:User): Observable<any> {
     return this._http.post(`${environment.API_URL}api/users/removefriend`, {friendName: user.username})
   }
 
   /** méthode qui écoute tout le temps la liste des utilsateurs en ligne
    * et on la next
    */
-  friendsOnLine() {
+  friendsOnLine(): void {
     this._socket.on ('users list', (users: any)=> {
       console.log('liste des utilsateurs connectés ', users)
       this.usersOnLine.next(users)

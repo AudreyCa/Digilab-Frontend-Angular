@@ -48,10 +48,11 @@ export class TchatRoomComponent implements OnInit {
     this._tchatServ.getMessageToReceived().subscribe((msgReceveidOnline: any) => {
       if (msgReceveidOnline.userID.username != this.userCurrent.username){
         this._snackBar.open(`${msgReceveidOnline.userID.username} vous a envoyé :  ${msgReceveidOnline.content} `, 'ok', { verticalPosition: 'top' })
-        
+        this.playSoundReceived()
       } else {
         console.warn('ici received ', msgReceveidOnline.content);
         this.arrayMessages.push(msgReceveidOnline)
+        this.userCurrent.nbMessageEnAttente = null;
       } 
 
     })
@@ -104,8 +105,12 @@ export class TchatRoomComponent implements OnInit {
     }
   }
 
+  playSoundReceived() {
+    let audio = new Audio();
+    audio.src = "assets/sons/mixkit-positive-notification-951.wav";
+    audio.load();
+    audio.play();
+  }
+
 }
 
-
-
-     // .pipe(map((userID: Chatmessage) => userID))

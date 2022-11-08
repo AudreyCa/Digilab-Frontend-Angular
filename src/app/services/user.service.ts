@@ -39,7 +39,7 @@ export class UserService extends GlobalHttpService {
    * vers le tchat-top-bar
    * @param  {any} user
    */
-  setUserCurrent (user: any) {
+  setUserCurrent (user: any): void {
     // envoyer ces info à travers l'observable
     this.currentUser.next(user)
   }
