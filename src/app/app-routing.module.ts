@@ -22,7 +22,7 @@ const routes: Routes = [
 // puis on met le loadChildren avec l'import comme ci dessus. Le m dans le then est toujours comme ca
  {path:'login', loadChildren:() => import('./modules/login/login.module').then(m => m.LoginModule)},
  {path:'register', loadChildren:() => import('./modules/register/register.module').then(m => m.RegisterModule)},
- {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
+ {path: 'finder', loadChildren:() => import('./modules/finder/finder.module').then(m => m.FinderModule), canActivate:[AuthGuard]},
  {path: 'tchat-room', component: TchatRoomComponent, canActivate:[AuthGuard]},
  {path:'overview', component: OverviewComponent, canActivate:[AuthGuard],
     children: 

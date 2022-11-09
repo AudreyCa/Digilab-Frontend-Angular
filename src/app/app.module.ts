@@ -28,7 +28,6 @@ import { UserListModalComponent } from './modals/user-list-modal/user-list-modal
 import { MatChipsModule } from '@angular/material/chips';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { FinderComponent } from './components/finder/finder.component';
 import { FinderModalComponent } from './modals/finder-modal/finder-modal.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
@@ -60,7 +59,6 @@ const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
     TchatRoomComponent,
     TchatTopBarComponent,
     UserListModalComponent,
-    FinderComponent,
     FinderModalComponent,
     AddFriendModalComponent,
     RemoveFriendModalComponent
