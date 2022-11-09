@@ -45,6 +45,7 @@ import { AddFriendModalComponent } from './modals/add-friend-modal/add-friend-mo
 import { RemoveFriendModalComponent } from './modals/remove-friend-modal/remove-friend-modal.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatBadgeModule } from '@angular/material/badge';
+import { ChatResolver } from './resolvers/chat.resolver';
 const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
 
 

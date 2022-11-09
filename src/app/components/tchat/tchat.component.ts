@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-tchat',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TchatComponent implements OnInit {
 
-  constructor() { }
+  displayFriends!: User;
+
+  constructor(private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this._activatedRoute.data.subscribe(({friends})=> {
+      this.displayFriends = friends
+    })
   }
 
 }
+
