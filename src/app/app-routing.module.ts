@@ -13,6 +13,7 @@ import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.c
 import { FinderComponent } from './components/finder/finder.component';
 import { AuthGuard } from './guards/auth.guard';
 import { UserLlistResolver } from './resolvers/user-llist.resolver';
+import { WeatherComponent } from './components/weather/weather.component';
 
 const routes: Routes = [
   // on en fait un vide pour la première page d'attérissage
@@ -23,19 +24,21 @@ const routes: Routes = [
  {path:'login', loadChildren:() => import('./modules/login/login.module').then(m => m.LoginModule)},
  {path:'register', loadChildren:() => import('./modules/register/register.module').then(m => m.RegisterModule)},
  {path: 'finder', loadChildren:() => import('./modules/finder/finder.module').then(m => m.FinderModule), canActivate:[AuthGuard]},
- {path: 'tchat-room', component: TchatRoomComponent, canActivate:[AuthGuard]},
- {path:'overview', component: OverviewComponent, canActivate:[AuthGuard],
-    children: 
-    [{path: 'directory', component: DirectoryComponent, canActivate:[AuthGuard]},
-    {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
-     {path:'tchat', component: TchatComponent, canActivate:[AuthGuard],
-        children: 
-        [{path:'userList', component: UserListComponent, canActivate:[AuthGuard], resolve:{userListRes: UserLlistResolver}}, 
-         {path:'tchatRoom', component: TchatRoomComponent, canActivate:[AuthGuard],
-            children:
-            [{path:'tchatTopBar', component: TchatTopBarComponent, canActivate:[AuthGuard]}]}
-            ]}
-    ]}
+ {path:'overview', loadChildren:() => import('./modules/overview/overview.module').then(m => m.OverviewModule), canActivate:[AuthGuard],
+    // children: 
+    // [{path: 'directory', component: DirectoryComponent, canActivate:[AuthGuard]},
+    // {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
+    // {path: 'weather', component: WeatherComponent, canActivate:[AuthGuard]},
+    //  {path:'tchat', component: TchatComponent, canActivate:[AuthGuard],
+    //     children: 
+    //     [{path:'userList', component: UserListComponent, canActivate:[AuthGuard], 
+    //     resolve:{userListRes: UserLlistResolver}}, 
+    //      {path:'tchatRoom', component: TchatRoomComponent, canActivate:[AuthGuard],
+    //         children:
+    //         [{path:'tchatTopBar', component: TchatTopBarComponent, canActivate:[AuthGuard]}]}
+    //         ]}
+    // ]
+  }
   ];
 
 @NgModule({

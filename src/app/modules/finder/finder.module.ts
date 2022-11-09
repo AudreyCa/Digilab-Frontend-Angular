@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FinderRoutingModule } from './finder-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FinderComponent } from 'src/app/components/finder/finder.component';
+import { FinderModalComponent } from 'src/app/modals/finder-modal/finder-modal.component';
 
 
 @NgModule({
