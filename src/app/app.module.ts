@@ -8,18 +8,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DirectoryComponent } from './components/directory/directory.component';
 import { DirectoryModalComponent } from './modals/directory-modal/directory-modal.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgModule } from '@angular/core';
-import { RegisterComponent } from './components/register/register.component';
 import { TchatComponent } from './components/tchat/tchat.component';
 import { UserComponent } from './components/user/user.component';
 import { UserModalComponent } from './modals/user-modal/user-modal.component';
@@ -52,7 +45,6 @@ const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
   declarations: [
     AppComponent,
     UserComponent,
-    RegisterComponent,
     AgePipe,
     UserModalComponent,
     DirectoryComponent,
@@ -79,7 +71,6 @@ const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
     BrowserAnimationsModule,
     HttpClientModule,
     MatListModule,
-    MatAutocompleteModule,
     MatGridListModule,
     FormsModule,
     MatDialogModule,

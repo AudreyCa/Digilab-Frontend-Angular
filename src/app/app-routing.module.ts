@@ -18,10 +18,10 @@ const routes: Routes = [
   // on en fait un vide pour la première page d'attérissage
   // !Attention, les path sont toujours en lowercase
 //  {path:'', component: LoginComponent},
- {path:'register', component: RegisterComponent},
 //  POur le module : on enlève 'component: LoginComponent' pour le placer dans login-routing module,
 // puis on met le loadChildren avec l'import comme ci dessus. Le m dans le then est toujours comme ca
  {path:'login', loadChildren:() => import('./modules/login/login.module').then(m => m.LoginModule)},
+ {path:'register', loadChildren:() => import('./modules/register/register.module').then(m => m.RegisterModule)},
  {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
  {path: 'tchat-room', component: TchatRoomComponent, canActivate:[AuthGuard]},
  {path:'overview', component: OverviewComponent, canActivate:[AuthGuard],

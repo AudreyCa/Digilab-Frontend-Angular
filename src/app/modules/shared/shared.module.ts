@@ -28,17 +28,19 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatAutocompleteModule
   ],
   exports:[
-      CommonModule,
-      ReactiveFormsModule,
-      MatCardModule,
-      MatIconModule,
-      MatInputModule,
-      MatFormFieldModule,
-      FormsModule,
-      MatButtonModule
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatButtonModule,
+    MatAutocompleteModule
     ]
 })
 
