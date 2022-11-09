@@ -4,20 +4,19 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from '../models/user.model';
 import { TchatService } from '../services/tchat.service';
 
 @Injectable({
   providedIn: 'root'
 })
-// User => type de données qui sera récupéré
-export class ChatResolver implements Resolve<User> {
+// User[] => type de données qui sera récupéré
+export class UserLlistResolver implements Resolve<User[]> {
 
-  constructor(private _chatService: TchatService) {}
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
+  constructor(private _tchatServ: TchatService){}
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User[]> {
     // on retourne les données récupérées (ici on utilise un service qui retourne une observable)
-    return this._chatService.getFriend();
+    return this._tchatServ.getFriend()
   }
 }

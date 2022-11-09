@@ -13,6 +13,7 @@ import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.c
 import { FinderComponent } from './components/finder/finder.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ChatResolver } from './resolvers/chat.resolver';
+import { UserLlistResolver } from './resolvers/user-llist.resolver';
 
 const routes: Routes = [
   // on en fait un vide pour la première page d'attérissage
@@ -26,9 +27,9 @@ const routes: Routes = [
     children: 
     [{path: 'directory', component: DirectoryComponent, canActivate:[AuthGuard]},
     {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
-     {path:'tchat', component: TchatComponent, canActivate:[AuthGuard], resolve:{chatRes: ChatResolver},
+     {path:'tchat', component: TchatComponent, canActivate:[AuthGuard],
         children: 
-        [{path:'userList', component: UserListComponent, canActivate:[AuthGuard]}, 
+        [{path:'userList', component: UserListComponent, canActivate:[AuthGuard], resolve:{userListRes: UserLlistResolver}}, 
          {path:'tchatRoom', component: TchatRoomComponent, canActivate:[AuthGuard],
             children:
             [{path:'tchatTopBar', component: TchatTopBarComponent, canActivate:[AuthGuard]}]}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
+import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs';
 import { UserListModalComponent } from 'src/app/modals/user-list-modal/user-list-modal.component';
 import { User } from 'src/app/models/user.model';
@@ -27,16 +28,23 @@ export class UserListComponent implements OnInit {
   isFriend  = false;
   imgDefault = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
   friendOnline!: any;
+  displayUserlist!: User[];
 
   constructor(private _userService: UserService, 
     private _matDialog: MatDialog, 
     public fb: FormBuilder,
     private _backend: BackendService, 
-    private _tchatServ: TchatService) {
+    private _tchatServ: TchatService,
+    private _activatedRoute : ActivatedRoute) {
      }
 
 
   ngOnInit(): void {
+
+    // Pour le resolver :
+    this._activatedRoute.data.subscribe(({userListRes}) =>{
+      this.displayUserlist = userListRes
+    })
 
     // Pour récupérer la liste de mes amis. On est obligé de passer par la requete.
     this._tchatServ.getFriend().subscribe((myFriends: any) => {

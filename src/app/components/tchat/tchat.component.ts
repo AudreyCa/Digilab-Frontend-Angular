@@ -8,15 +8,10 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./tchat.component.scss']
 })
 export class TchatComponent implements OnInit {
-
-  displayFriends!: User;
-
-  constructor(private _activatedRoute: ActivatedRoute) { }
+  
+  constructor() { }
 
   ngOnInit(): void {
-    this._activatedRoute.data.subscribe(({friends})=> {
-      this.displayFriends = friends
-    })
   }
 
 }
