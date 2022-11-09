@@ -12,15 +12,16 @@ import { TchatRoomComponent } from './components/tchat-room/tchat-room.component
 import { TchatTopBarComponent } from './components/tchat-top-bar/tchat-top-bar.component';
 import { FinderComponent } from './components/finder/finder.component';
 import { AuthGuard } from './guards/auth.guard';
-import { ChatResolver } from './resolvers/chat.resolver';
 import { UserLlistResolver } from './resolvers/user-llist.resolver';
 
 const routes: Routes = [
   // on en fait un vide pour la première page d'attérissage
   // !Attention, les path sont toujours en lowercase
- {path:'', component: LoginComponent},
+//  {path:'', component: LoginComponent},
  {path:'register', component: RegisterComponent},
- {path:'login', component: LoginComponent},
+//  POur le module : on enlève 'component: LoginComponent' pour le placer dans login-routing module,
+// puis on met le loadChildren avec l'import comme ci dessus. Le m dans le then est toujours comme ca
+ {path:'login', loadChildren:() => import('./modules/login/login.module').then(m => m.LoginModule)},
  {path: 'finder', component: FinderComponent, canActivate:[AuthGuard]},
  {path: 'tchat-room', component: TchatRoomComponent, canActivate:[AuthGuard]},
  {path:'overview', component: OverviewComponent, canActivate:[AuthGuard],

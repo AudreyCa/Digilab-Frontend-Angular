@@ -8,7 +8,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DirectoryComponent } from './components/directory/directory.component';
 import { DirectoryModalComponent } from './modals/directory-modal/directory-modal.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginComponent } from './components/login/login.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -45,7 +44,7 @@ import { AddFriendModalComponent } from './modals/add-friend-modal/add-friend-mo
 import { RemoveFriendModalComponent } from './modals/remove-friend-modal/remove-friend-modal.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatBadgeModule } from '@angular/material/badge';
-import { ChatResolver } from './resolvers/chat.resolver';
+import { SharedModule } from './modules/shared/shared.module';
 const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
 
 
@@ -53,7 +52,6 @@ const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
   declarations: [
     AppComponent,
     UserComponent,
-    LoginComponent,
     RegisterComponent,
     AgePipe,
     UserModalComponent,
@@ -80,16 +78,10 @@ const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule,
     MatListModule,
     MatAutocompleteModule,
-    MatCardModule,
-    MatIconModule,
     MatGridListModule,
-    MatInputModule,
-    MatFormFieldModule,
     FormsModule,
-    MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
     MatChipsModule,
@@ -97,7 +89,11 @@ const config: SocketIoConfig = { url: `${environment.API_URL}`, options: {} };
     SocketIoModule,
     SocketIoModule.forRoot(config),
     MatSlideToggleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    SharedModule
+  ],
+  exports: [
+    SharedModule
   ],
   providers: [
     {
