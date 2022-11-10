@@ -2,7 +2,10 @@
 
     <div *ngIf="idUserData">
         <!-- <span>{{data | json}}</span> -->
-        <img [src]="idUserData.avatar" alt="photo de profil" *ngIf="idUserData.avatar">
+        <img matListAvatar [src]="idUserData.avatar" alt="photo de profil" *ngIf="idUserData.avatar; else alter">
+        <ng-template #alter>
+            <img matListAvatar [src]="imgDefault" alt="">
+        </ng-template>
         <span> {{ idUserData.firstName }} </span>
         <span> {{ idUserData.lastName }} </span>
     </div>

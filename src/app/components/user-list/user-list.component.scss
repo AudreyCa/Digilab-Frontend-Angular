@@ -34,7 +34,7 @@
 
 .card-container {
     padding: 5px;
-    margin-bottom: 80px;
+    margin-bottom: 65px;
     height: fit-content;
     overflow-y: scroll;
 }
@@ -64,6 +64,7 @@
                 height: 40px;
                 border-radius: 50%;
                 margin-top: -10px;
+                // position: relative;
             }
         }
         p {
@@ -84,12 +85,18 @@
         .remove {
             margin-left: 3px;
         }
-        .online{
-            width: 10px;
-            height: 10px;
+        .user-online {
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
+            border: 2px solid white;
             background-color: green;
             margin-top: 5px;
+            // position: absolute;
         }
     }
+}
+
+.friends {
+    background-color:#9ca2c9;
 }

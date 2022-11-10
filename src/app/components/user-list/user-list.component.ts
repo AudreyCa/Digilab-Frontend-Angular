@@ -65,12 +65,17 @@ export class UserListComponent implements OnInit {
     }) 
 
 
-       this._tchatServ.friendsOnLine();
+      this._tchatServ.friendsOnLine();
 
       this._tchatServ.getFriendsOnline().subscribe((usersOnline:any)=>{
         this.allUsers.forEach((userTab:any) => {
           if((usersOnline).includes(userTab.username)) {
             userTab.online = true
+          }
+        })
+        this.newFriends.forEach((userFriendO:any) => {
+          if((usersOnline).includes(userFriendO.username)) {
+            userFriendO.online = true
           }
         })
       })

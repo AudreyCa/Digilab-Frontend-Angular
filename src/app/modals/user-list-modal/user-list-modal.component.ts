@@ -9,11 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class UserListModalComponent implements OnInit {
 
-  // contact = {
-  //   firstame: this.,
-  //   lastname: 74100,
-  //   img: 
-  // }
+  imgDefault = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
 
 // On récupère les datats envoyé par la modale grâce au décorateur Inject
   constructor(@Inject(MAT_DIALOG_DATA) public dataUser:any, 

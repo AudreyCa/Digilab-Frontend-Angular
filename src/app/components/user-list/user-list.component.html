@@ -29,7 +29,7 @@
                     <div class="badge" [matBadge]="user.nbMessageEnAttente" matBadgePosition="after" matBadgeColor="primary">
                         <img matListAvatar [src]="user.avatar" *ngIf="user.avatar; else alter">
                         <ng-template #alter>
-                            <img [src]="imgDefault" alt="">
+                            <img matListAvatar [src]="imgDefault" alt="">
                         </ng-template>
                     </div>
                     <p matLine>{{ user.firstName }}</p>
@@ -37,21 +37,22 @@
                 </div>  
                 <div class="boutons">
                     <mat-icon matLine (click)="onAddFriend(user)" *ngIf="isFriend == false">person_add</mat-icon>
-                    <mat-icon matLine class="remove" (click)="onRemoveFriend(user)">remove_circle_outline</mat-icon>                 
-                    <div class="online" *ngIf="user.online"></div>
+                    <!-- <mat-icon matLine class="remove" (click)="onRemoveFriend(user)">remove_circle_outline</mat-icon>                  -->
+                    <div class="user-online" *ngIf="user.online"></div>
                 </div>
             </mat-list-item>
         </mat-list>
     </div>
 
-    <div *ngIf="isFriend" class="card-container" [style]="backgroundColorFriend">
-        <mat-list class="card-contact" *ngFor="let user of newFriends">
+    <div *ngIf="isFriend" class="card-container">
+        <mat-list class="card-contact friends" *ngFor="let user of newFriends">
             <mat-list-item>
                 <div matLine class="id" (click)="onOpenModal(user)">
                     <div class="badge" [matBadge]="user.nbMessageEnAttente" matBadgePosition="after" matBadgeColor="primary">
                         <img matListAvatar [src]="user.avatar" *ngIf="user.avatar; else alter">
+                        <div class="user-online" *ngIf="user.online"></div>
                         <ng-template #alter>
-                            <img [src]="imgDefault" alt="">
+                            <img matListAvatar [src]="imgDefault" alt="">
                         </ng-template>
                     </div>
                     <p matLine>{{ user.firstName }}</p>
@@ -59,7 +60,7 @@
                 </div>  
                 <div class="boutons">
                     <mat-icon matLine class="remove" (click)="onRemoveFriend(user)">remove_circle_outline</mat-icon>                 
-                    <div class="online" *ngIf="user.online"></div>
+                    <div class="user-online" *ngIf="user.online"></div>
                 </div>
             </mat-list-item>
         </mat-list>

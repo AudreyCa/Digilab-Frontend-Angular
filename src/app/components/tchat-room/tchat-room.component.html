@@ -1,12 +1,12 @@
-<section class="container-tcaht-room">
+<section class="container-tchat-room">
 
   <div class="tchat-room" *ngIf="userCurrent">
 
-    <app-tchat-top-bar [idUserData]="userCurrent"></app-tchat-top-bar>
-  
+      <app-tchat-top-bar [idUserData]="userCurrent"></app-tchat-top-bar>
+
     <div class="tchat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
       <div *ngFor="let message of arrayMessages">
-  
+
         <div *ngIf="userCurrent.username == message.userID.username; else rightInfo" class="left">
           <mat-chip-list>
             <mat-hint>{{userCurrent.username}}</mat-hint>
@@ -27,19 +27,19 @@
             </mat-chip-list>
           </div>
         </ng-template>
-  
+
       </div>
-  
+
     </div>
-  
-  
+
+
   </div>
-  
-  
+
+
   <div class="input-chat">
     <input *ngIf="userCurrent" [formControl]="messageText" (keypress)="onSendMessage($event)" matInput
       placeholder=" Votre message..." type="text">
     <mat-icon class="bouton" *ngIf="userCurrent" class="icon-send" matSuffix (click)="onSend()">send</mat-icon>
   </div>
-  
+
 </section>

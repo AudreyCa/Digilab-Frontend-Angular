@@ -3,12 +3,20 @@
 
 
     <mat-card class="identity">
-        <img mat-card-avatar [src]="dataUser.avatar" *ngIf="dataUser.avatar">
+        <img mat-card-avatar [src]="dataUser.avatar" *ngIf="dataUser.avatar; else alter">
+        <ng-template #alter>
+            <img mat-card-avatar [src]="imgDefault" alt="">
+        </ng-template>
         <div class="name">
             <span> {{ dataUser.firstName }} </span>
             <span> {{ dataUser.lastName }} </span>
         </div>
     </mat-card>
+
+    <!-- <img matListAvatar [src]="user.avatar" *ngIf="user.avatar; else alter">
+    <ng-template #alter>
+        <img [src]="imgDefault" alt="">
+    </ng-template> -->
 
     <div class="question">
         <p>Etes-vous sûr(e) de vouloir discuter avec cette personne?</p>
