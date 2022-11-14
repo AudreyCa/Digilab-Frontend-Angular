@@ -2,3 +2,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.switch-bar .mat-tab-label {
+    min-width: 0px;
+    margin: none;
+}
