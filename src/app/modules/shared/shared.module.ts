@@ -20,7 +20,7 @@ import { UserListModalComponent } from 'src/app/modals/user-list-modal/user-list
 import { WeatherModalComponent } from 'src/app/modals/weather-modal/weather-modal.component';
 import { DirectoryModalComponent } from 'src/app/modals/directory-modal/directory-modal.component';
 import { UserModalComponent } from 'src/app/modals/user-modal/user-modal.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({

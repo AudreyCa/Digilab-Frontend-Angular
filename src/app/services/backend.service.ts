@@ -11,7 +11,7 @@ import { GlobalHttpService } from './global-http.service';
 export class BackendService extends GlobalHttpService {
 
   // Attention, on precise le chemin (/register, /login, etc...) en fonction de ce que l'on fait et seulement dans les méthode pour preciser
-  backend = 'http://localhost:3000/api/users';
+  // backend = 'http://localhost:3000/api/users';
   private _apiUrl = `${environment.API_URL}api/users`;
 
 

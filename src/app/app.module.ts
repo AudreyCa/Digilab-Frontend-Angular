@@ -7,7 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { UserComponent } from './components/user/user.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import {  SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from './modules/shared/shared.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';

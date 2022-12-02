@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs';
 import { UserListModalComponent } from 'src/app/modals/user-list-modal/user-list-modal.component';
