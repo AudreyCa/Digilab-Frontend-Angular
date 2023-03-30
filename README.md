@@ -1,27 +1,31 @@
-# Digilab
+# Digilab - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
+This project was carried out during the training of Application Designer Developer at Digifab, while learning Angular.
 
-## Development server
+## **Technologies used**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Language : Angular14
 
-## Code scaffolding
+IDE : Visual Studio Code
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Objective
 
-## Build
+The goal of learning Angular by building a project. The application built is a platform that connects individuals and professionals.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Learning
 
-## Running unit tests
+We learned :
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- To install Angular (14)
+- Install Material Angular
+- Use Bootstrap for quick layout.
+- Learn different notions and less manipulate: components, services, models, modals, controllers, guards, imports, etc…
+- Create a chat with [Socket.io](http://socket.io/)
+- Handling APIs.
+- Security with a compete to access the application (discovery of the concept of token)
 
-## Running end-to-end tests
+## Other information
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Backend made by Adrien Gouacide : [https://github.com/adriengou](https://github.com/adriengou) with Node.js and MongoDb.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Backend link : [https://github.com/AudreyCa/Digilab-Backend-Node](https://github.com/AudreyCa/Digilab-backend)
